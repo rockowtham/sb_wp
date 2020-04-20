@@ -25,7 +25,7 @@
 if (!defined('ABSPATH'))
     exit;
 
-/**
+/***
  * Image Watermark WP class.
  *
  * @class Image_Watermark
