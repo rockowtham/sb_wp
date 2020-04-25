@@ -24,6 +24,7 @@ if( !function_exists('carspotAPI_ad_posts_get' ) )
 {
 function carspotAPI_ad_posts_get( $request )
 {
+	
 	global  $carspotAPI;
 	global  $carspot_theme;
 	$json_data = $request->get_json_params();	
@@ -61,6 +62,7 @@ function carspotAPI_ad_posts_get( $request )
 			}
 		}
 	}
+	
 	/*Expiration of ad ends */		
 	$data = '';
 	if( !$post && @count( $post ) == 0 ) 
@@ -86,6 +88,7 @@ function carspotAPI_ad_posts_get( $request )
 	$ad_detail['featured_ads'] 		= get_post_meta( $post->ID,  '_carspot_featured_ads', true  );	
 	$ad_detail['expire_date'] 		= get_post_meta( $post->ID,  '_carspot_expire_ads', true  );		
 	$ad_detail['ad_status'] 		= get_post_meta( $post->ID, '_carspot_ad_status_', true );
+	
 	$ad_detail['ad_timer'] 		    = carspotAPI_get_adTimer($post->ID);
 	$poster_phone 					= get_post_meta( $post->ID, '_carspot_poster_contact', true );
 	$ad_type_bar = false;
@@ -161,6 +164,7 @@ function carspotAPI_ad_posts_get( $request )
 	}
 	/* Get ads images */
 	//$ad_detail['images']        			= carspotAPI_get_ad_image($post->ID);
+	
 	$ad_detail['images']        			= carspotAPI_get_ad_image_with_arrangment($post->ID);
 	$ad_detail['images_count']  			= sprintf( __( 'See %s photos.', 'carspot-rest-api' ), count(carspotAPI_get_ad_image($post->ID)) ); 
 	$profile_detail	                		= carspotAPI_basic_profile_bar($ad_author_id);
@@ -332,10 +336,11 @@ function carspotAPI_ad_posts_get( $request )
 	}
 	$is_featured_ad['notification'] = $featured_notify;
 	$ad_rating 						= carspotAPI_adDetails_rating_get( $ad_id, 1, false );
-	
+
 	/* Related Articles Started */
 	$related_ads_is_show = false;
 	$getSimilar = carspotApi_related_ads($post->ID, 1);
+
 	if (isset($carspot_theme['Related_ads_on']) && $carspot_theme['Related_ads_on'] == true && count($getSimilar) > 0) {
 		$rtitle = ($carspot_theme['sb_related_ads_title'] != "" ) ? $carspot_theme['sb_related_ads_title'] : __("Related Posts", "carspot-rest-api");
 		$related_ads['title'] = $rtitle;
@@ -345,6 +350,15 @@ function carspotAPI_ad_posts_get( $request )
 		$related_ads['ads'] = $getSimilar;
 		$related_ads_is_show = true;
 	}
+	$ad_detail['ad_usage'] 		    = get_post_meta( $ad_id, '_carspot_ad_usage', true );
+	$ad_detail['ad_condition'] 		    = get_post_meta( $ad_id, '_carspot_ad_condition', true );
+	$ad_detail['ad_price']			=  get_post_meta( $ad_id, '_carspot_ad_price', true );
+	$ad_detail['ad_yvideo']			=  get_post_meta( $ad_id, '_carspot_ad_yvideo', true );
+	$ad_detail['location_lat']			=  get_post_meta( $ad_id, '_carspot_ad_map_lat', true );
+	$ad_detail['location_long']			=  get_post_meta( $ad_id, '_carspot_ad_map_long', true );
+	$ad_detail['ad_phone']			=  get_post_meta( $ad_id, '_carspot_ad_price', true );
+
+
 	$related_ads['is_show'] = $related_ads_is_show;
 	/* Related Articles Ends */	
 	//global $carspotAPI;
@@ -373,6 +387,7 @@ function carspotAPI_ad_posts_get( $request )
 			"banners" => array("before" => $before_descp, "after" => $after_descp),
 			"section_title"		=> $section_title,
 			"tabs_text"		=> $tabs_text,
+			
 		);
 
 	$message_text = '';

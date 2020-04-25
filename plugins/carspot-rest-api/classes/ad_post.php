@@ -644,6 +644,7 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 		{
 			$pid	=	get_user_meta ( $user_id, 'ad_in_progress', true );	
 			if($pid){} else{$pid	=	$json_data['ad_id'];}	
+			// echo $pid;exit;
 			delete_user_meta($user_id, 'ad_in_progress');	
 			if( !is_super_admin( $user_id ) )
 			{
@@ -691,6 +692,7 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 		//print_r($cats_arr);
 		$is_imageallow 	= carspotAPI_CustomFieldsVals($pid, $cats_arr);  	
 		$media 			= get_attached_media( 'image', $pid );
+		// print_r($media);exit;
 		if($is_imageallow == 1 && count($media) == 0)
 		{
 			//$response = array( 'success' => false, 'data' => '' , 'message' => __("Images are required", "carspot-rest-api") );
@@ -787,7 +789,7 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 			$ad_price_types			= isset( $json_data['custom_fields']['ad_price_type'] ) ? $json_data['custom_fields']['ad_price_type'] : '';
 			$ad_price   			= isset( $json_data['custom_fields']['ad_price'] ) ? $json_data['custom_fields']['ad_price'] : '';
 			$ad_yvideo   			= isset( $json_data['custom_fields']['ad_yvideo'] ) ? $json_data['custom_fields']['ad_yvideo'] : '';
-
+			$ad_usage   			= isset( $json_data['custom_fields']['ad_Usage'] ) ? $json_data['custom_fields']['ad_Usage'] : '';
 			$ad_mileage   			= isset( $json_data['custom_fields']['ad_mileage'] ) ? $json_data['custom_fields']['ad_mileage'] : '';
 			
 			$ad_avg_hwy   			= isset( $json_data['custom_fields']['ad_avg_hwy'] ) ? $json_data['custom_fields']['ad_avg_hwy'] : '';
@@ -920,6 +922,9 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 	update_post_meta($pid, '_carspot_ad_map_lat', $ad_owner_location_lat );
 	update_post_meta($pid, '_carspot_ad_map_long', $ad_owner_location_long );
 	update_post_meta($pid, '_carspot_poster_name1', $desc );
+	update_post_meta($pid, '_carspot_ad_usage', $ad_usage );
+	update_post_meta($pid, '_carspot_ad_condition', $ad_condition );
+	update_post_meta($pid, '_carspot_ad_price', $ad_price );
 	/* Ad extra fields post meta starts */
 	/*
 	$sb_extra_fields   = isset( $json_data['sb_extra_fields'] ) ? $json_data['sb_extra_fields'] : '';	
