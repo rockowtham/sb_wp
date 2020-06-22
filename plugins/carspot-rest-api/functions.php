@@ -106,6 +106,7 @@ if (!function_exists('carspotAPI_adsLoop'))
 				
 				
 				$postAuthor = get_the_author_meta('ID');
+				$postAuthor_name = get_the_author_meta('display_name');
 				if( $is_fav == false )
 				{
 					if( $userid != "" && $postAuthor != $userid )  continue;
@@ -134,6 +135,7 @@ if (!function_exists('carspotAPI_adsLoop'))
 				$adsArr[] = array
 					(
 						"ad_author_id" => $postAuthor,
+						"ad_author_name" => $postAuthor_name,
 						"ad_id" 	=> $ad_id,
 						"ad_date" 	=>  get_the_date("", $ad_id),
 						"ad_title" 	=> carspotAPI_convert_uniText( get_the_title() ),
