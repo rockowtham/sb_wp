@@ -89,6 +89,7 @@ function carspotAPI_ad_posts_get( $request )
 	$ad_detail['expire_date'] 		= get_post_meta( $post->ID,  '_carspot_expire_ads', true  );		
 	$ad_detail['ad_status'] 		= get_post_meta( $post->ID, '_carspot_ad_status_', true );
 	
+	
 	$ad_detail['ad_timer'] 		    = carspotAPI_get_adTimer($post->ID);
 	$poster_phone 					= get_post_meta( $post->ID, '_carspot_poster_contact', true );
 	$ad_type_bar = false;
@@ -350,6 +351,7 @@ function carspotAPI_ad_posts_get( $request )
 		$related_ads['ads'] = $getSimilar;
 		$related_ads_is_show = true;
 	}
+	// echo $ad_id;exit;
 	$ad_detail['ad_usage'] 		    = get_post_meta( $ad_id, '_carspot_ad_usage', true );
 	$ad_detail['ad_condition'] 		    = get_post_meta( $ad_id, '_carspot_ad_condition', true );
 	$ad_detail['ad_price']			=  get_post_meta( $ad_id, '_carspot_ad_price', true );
@@ -357,7 +359,7 @@ function carspotAPI_ad_posts_get( $request )
 	$ad_detail['location_lat']			=  get_post_meta( $ad_id, '_carspot_ad_map_lat', true );
 	$ad_detail['location_long']			=  get_post_meta( $ad_id, '_carspot_ad_map_long', true );
 	$ad_detail['ad_phone']			=  get_post_meta( $ad_id, '_carspot_ad_price', true );
-
+	$ad_detail['add_type'] 		    = get_post_meta( $ad_id, '_carspot_add_type', true );
 
 	$related_ads['is_show'] = $related_ads_is_show;
 	/* Related Articles Ends */	

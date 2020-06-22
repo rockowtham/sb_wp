@@ -761,8 +761,8 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 			$ad_price_types			= isset( $json_data['ad_price_type'] ) ? $json_data['ad_price_type'] : '';
 			$ad_price   			= isset( $json_data['ad_price'] ) ? $json_data['ad_price'] : '';
 			$ad_yvideo   			= isset( $json_data['ad_yvideo'] ) ? $json_data['ad_yvideo'] : '';
-			
-			$features    			=  isset( $json_data['ad_features'] ) ? $json_data['ad_features'] : '';
+			$add_type               = isset( $json_data['add_type'] ) ? $json_data['add_type'] : '';
+			$features    			= isset( $json_data['ad_features'] ) ? $json_data['ad_features'] : '';
 			$ad_mileage   			= isset( $json_data['ad_mileage'] ) ? $json_data['ad_mileage'] : '';
 			
 			$ad_avg_hwy   			= isset( $json_data['ad_avg_hwy'] ) ? $json_data['ad_avg_hwy'] : '';
@@ -791,7 +791,7 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 			$ad_yvideo   			= isset( $json_data['custom_fields']['ad_yvideo'] ) ? $json_data['custom_fields']['ad_yvideo'] : '';
 			$ad_usage   			= isset( $json_data['custom_fields']['ad_Usage'] ) ? $json_data['custom_fields']['ad_Usage'] : '';
 			$ad_mileage   			= isset( $json_data['custom_fields']['ad_mileage'] ) ? $json_data['custom_fields']['ad_mileage'] : '';
-			
+			$add_type               = isset( $json_data['custom_fields']['add_type'] ) ? $json_data['custom_fields']['add_type'] : '';
 			$ad_avg_hwy   			= isset( $json_data['custom_fields']['ad_avg_hwy'] ) ? $json_data['custom_fields']['ad_avg_hwy'] : '';
 			$ad_avg_city   			= isset( $json_data['custom_fields']['ad_avg_city'] ) ? $json_data['custom_fields']['ad_avg_city'] : '';
 
@@ -817,7 +817,7 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 			$ad_colors  	   		= isset( $json_data['ad_colors'] ) ? $json_data['ad_colors'] : '';	
 			$ad_insurance   		= isset( $json_data['ad_insurance'] ) ? $json_data['ad_insurance'] : '';	
 			$ad_currency   			= isset( $json_data['ad_currency'] ) ? $json_data['ad_currency'] : '';
-			
+			$add_type               = isset( $json_data['add_type'] ) ? $json_data['add_type'] : '';
 			$ad_price_types			= isset( $json_data['ad_price_type'] ) ? $json_data['ad_price_type'] : '';
 
 			$ad_price   			= isset( $json_data['ad_price'] ) ? $json_data['ad_price'] : '';
@@ -925,6 +925,8 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 	update_post_meta($pid, '_carspot_ad_usage', $ad_usage );
 	update_post_meta($pid, '_carspot_ad_condition', $ad_condition );
 	update_post_meta($pid, '_carspot_ad_price', $ad_price );
+	
+
 	/* Ad extra fields post meta starts */
 	/*
 	$sb_extra_fields   = isset( $json_data['sb_extra_fields'] ) ? $json_data['sb_extra_fields'] : '';	
@@ -1047,10 +1049,8 @@ if ( ! function_exists( 'carspotAPI_post_ad_post' ) )
 	}
 	
 	
-
 	
-	
-	
+	update_post_meta($pid, '_carspot_add_type', $add_type );
 	$postdData['ad_id'] = $pid;
 	$response = array( 'success' => true, 'data' => $postdData , 'message' => $posted, 'extra' => $json_data);
 	return $response;
