@@ -159,7 +159,14 @@ if ( ! function_exists( 'carspotAPI_post_ad_get' ) )
 	$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_assembles', 'ad_assembles', 0, __("Assembly", "carspot-rest-api"),'','','2', true, '', $is_update);
 	}
 	
-	
+	$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_years', 'ad_years', 0, __("Year", "carspot-rest-api"),'','','2', true, '', $is_update);
+// $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_body_types', 'ad_body_types', 0, __("Body Type", "carspot-rest-api"),'','','2', true, '', $is_update);
+// $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_transmissions', 'ad_transmissions', 0, __("Transmission", "carspot-rest-api"),'','','2', true, '', $is_update);
+// $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_engine_capacities', 'ad_engine_capacities', 0, __("Capacity", "carspot-rest-api"),'','','2', true, '', $is_update);
+// $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_engine_types', 'ad_engine_types', 0, __("Engine Type", "carspot-rest-api"),'','','2', true, '', $is_update);
+// $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_assembles', 'ad_assembles', 0, __("Assembly", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_colors', 'ad_colors', 0, __("Colour", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_insurance', 'ad_insurance', 0, __("Insurance", "carspot-rest-api"),'','','2', true, '', $is_update);
 	
 	
 	/*$data['fields'][] = carspotAPI_getPostAdFields('textfield'	,'ad_tags1', '', 0, __("Tags Comma(,) separated", "carspot-rest-api"),'', '','2', false, '', $is_update);*/
