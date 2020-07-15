@@ -94,6 +94,15 @@ if ( ! function_exists( 'carspotAPI_post_ad_get' ) )
 			$ad_price			= get_post_meta($pid, '_carspot_ad_price', true );
 			$ad_price_typeVal  	= get_post_meta($pid, '_carspot_ad_price_type', true );	
 			$ad_yvideo			= get_post_meta($pid, '_carspot_ad_yvideo', true );
+			$ad_phone_number   = get_post_meta($pid, '_carspot_ad_phone_number', true );
+			$ad_user_address  = get_post_meta($pid, '_carspot_ad_user_address', true );
+			$ad_country  = get_post_meta($pid, '_carspot_ad_country', true );
+			$ad_colors  = get_post_meta($pid, '_carspot_ad_colors', true );
+			$ad_insurance  = get_post_meta($pid, '_carspot_ad_insurance', true );
+			$ad_make  = get_post_meta($pid, '_carspot_ad_make', true );
+			$ad_model  = get_post_meta($pid, '_carspot_ad_model', true );
+			$ad_version  = get_post_meta($pid, '_carspot_ad_version', true );
+			$ad_4thlevel  = get_post_meta($pid, '_carspot_ad_4thlevel', true );
 			$ad_bidding 		= get_post_meta($pid, '_carspot_ad_bidding', true );
 			$ad_bidding_time	= get_post_meta($pid, '_carspot_ad_bidding_date', true );
 			$ad_currency		= get_post_meta($pid, '_carspot_ad_currency', true);
@@ -167,10 +176,21 @@ if ( ! function_exists( 'carspotAPI_post_ad_get' ) )
 // $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_assembles', 'ad_assembles', 0, __("Assembly", "carspot-rest-api"),'','','2', true, '', $is_update);
 $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_colors', 'ad_colors', 0, __("Colour", "carspot-rest-api"),'','','2', true, '', $is_update);
 $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_insurance', 'ad_insurance', 0, __("Insurance", "carspot-rest-api"),'','','2', true, '', $is_update);
-	
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_country', 'ad_country', 0, __("Country", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_make', 'ad_make', 0, __("Make", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_model', 'ad_model', 0, __("Country", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_version', 'ad_version', 0, __("Version", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_4thlevel', 'ad_4thlevel', 0, __("4thLevel", "carspot-rest-api"),'','','2', true, '', $is_update);
+$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_phone_number', '', 0, __("Phone Number", "carspot-rest-api"), '', '', '2', false,'', $is_update);
+$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_user_name', '', 0, __("Your Name", "carspot-rest-api"), '', '', '2', false,'', $is_update);
+$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_user_address', '', 0, __("Address", "carspot-rest-api"), '', '', '2', false,'', $is_update);
+
 	
 	/*$data['fields'][] = carspotAPI_getPostAdFields('textfield'	,'ad_tags1', '', 0, __("Tags Comma(,) separated", "carspot-rest-api"),'', '','2', false, '', $is_update);*/
+	/*$data['fields'][] = carspotAPI_getPostAdFields('textfield'	,'ad_tags1', '', 0, __("Tags Comma(,) separated", "carspot-rest-api"),'', '','2', false, '', $is_update);*/
 	$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_tags', '', 0, __("Tags Comma(,) separated", "carspot-rest-api"), '', '', '2', false, $ad_tags);
+	$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_tags', '', 0, __("Tags Comma(,) separated", "carspot-rest-api"), '', '', '2', false, $ad_tags);
+	$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_yvideo', '', 0, __("Youtube Video Link", "carspot-rest-api"), '', '', 2, false, $ad_yvideo);
 	$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_yvideo', '', 0, __("Youtube Video Link", "carspot-rest-api"), '', '', 2, false, $ad_yvideo);
 	if(isset( $carspot_theme['allow_ad_features'] ) && $carspot_theme['allow_ad_features'] == 1 ){
 	$data['fields'][] = carspotAPI_getPostAdFields('checkbox', 'ad_features', 'ad_features', 0, __("Features", "carspot-rest-api"),'','','3', true, '', $is_update);	
@@ -254,7 +274,8 @@ $data['fields'][] =  carspotAPI_getPostAdFields('select', 'ad_insurance', 'ad_in
 			$map_lat  = ( $map_lat  != "" ) ? $map_lat  : $carspot_theme['sb_default_lat'];
 			$map_long = ( $map_long != "" ) ? $map_long : $carspot_theme['sb_default_long'];
 		}
-		
+		$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_map_lat', '', 0, __("ad map lat", "carspot-rest-api"), '', '', '2', false,'', $map_lat);
+		$data['fields'][] = carspotAPI_getPostAdFields('textfield'  , 'ad_map_long', '', 0, __("ad map long", "carspot-rest-api"), '', '', '2', false,'', $map_long);
 		//
 		$data['profile']['location'] = carspotAPI_getPostAdFields('glocation_textfield', 'ad_location', '', 0, __("Address", "carspot-rest-api"), '', $sb_location, '4', true, $sb_location);
 		
