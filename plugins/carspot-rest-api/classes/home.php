@@ -413,6 +413,7 @@ function latest_post() {
 		'post_status' => 'publish',
 		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'term_id', 'terms' => $categories),),
 	);
+	print_r($args);exit;
 	return(carspotAPI_adsLoop($args));
 }
 
