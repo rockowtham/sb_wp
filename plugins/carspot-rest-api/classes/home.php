@@ -407,9 +407,9 @@ function latest_post() {
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
-        'orderby' => 'post_date',
+        'orderby' => 'date',
         'order' => 'DESC',
-        'post_type' => 'post', /* your post type name */
+        'post_type' => 'ad_post', /* your post type name */
 		'post_status' => 'publish',
 		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'term_id', 'terms' => $categories),),
 	);
