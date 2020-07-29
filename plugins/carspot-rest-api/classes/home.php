@@ -415,6 +415,7 @@ function latest_post() {
 	);
 
 	$the_query = new WP_Query( $args );
+	echo "Last SQL-Query: {$the_query->request}";
 		if ( $the_query->have_posts() ) {
 		
 			while ( $the_query->have_posts() ) {
