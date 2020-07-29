@@ -402,7 +402,7 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 function latest_post() {
 
 	// global 
-	$cat_string = "17, 20, 21";
+	$cat_string = "17, 20, 21,22";
 	$categories = explode( ',', $cat_string );
 	foreach($categories as $category){
     $args = array(
