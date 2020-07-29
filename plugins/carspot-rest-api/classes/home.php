@@ -404,6 +404,7 @@ function latest_post() {
 	// global 
 	$cat_string = "21, 23, 17";
 	$categories = explode( ',', $cat_string );
+	foreach($categories as $category){
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
@@ -411,7 +412,7 @@ function latest_post() {
         'order' => 'DESC',
         'post_type' => 'ad_post', /* your post type name */
 		'post_status' => 'publish',
-		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'term_id', 'terms' => $categories),),
+		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'term_id', 'terms' => $category),),
 	);
 
 	$the_query = new WP_Query( $args );
@@ -479,6 +480,7 @@ function latest_post() {
 			// wp_reset_postdata();	
 			
 		}
+	}
 	// print_r($adsArr,true);exit;
 	return($adsArr);
 }
