@@ -100,7 +100,7 @@ if (!function_exists('carspotAPI_adsLoop'))
 		
 		$the_query = new WP_Query( $args );
 		if ( $the_query->have_posts() ) {
-			echo "here";exit;
+		
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
 				$ad_id = get_the_ID();
@@ -167,6 +167,7 @@ if (!function_exists('carspotAPI_adsLoop'))
 		}
 		else
 		{
+			print_r($adsArr);exit;
 			return array("ads" => $adsArr, "found_posts" => $the_query->found_posts, "max_num_pages" => $the_query->max_num_pages);
 		}
 		
