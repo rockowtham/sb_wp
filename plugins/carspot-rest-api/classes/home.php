@@ -402,7 +402,7 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 function latest_post() {
 
 	// global 
-	$categories = array( 21, 6 );
+	$categories = array( 21, 23, 17 );
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
@@ -410,7 +410,7 @@ function latest_post() {
         'order' => 'DESC',
         'post_type' => 'post', /* your post type name */
 		'post_status' => 'publish',
-		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'id', 'terms' => $categories, 'operator'=> 'IN'),),
+		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'term_id', 'terms' => $categories, 'operator'=> 'IN'),),
 	);
 	return(carspotAPI_adsLoop($args));
 }
