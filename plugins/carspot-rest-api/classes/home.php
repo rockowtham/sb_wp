@@ -477,7 +477,7 @@ function latest_post() {
 			wp_reset_postdata();	
 			
 		}
-	print_r($adsArr);exit;
+	print_r($adsArr,true);exit;
 	return(1);
 }
 
