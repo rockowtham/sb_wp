@@ -167,7 +167,6 @@ if (!function_exists('carspotAPI_adsLoop'))
 		}
 		else
 		{
-			print_r($the_query->found_posts);exit;
 			return array("ads" => $adsArr, "found_posts" => $the_query->found_posts, "max_num_pages" => $the_query->max_num_pages);
 		}
 		

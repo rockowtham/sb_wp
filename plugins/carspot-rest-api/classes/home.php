@@ -413,8 +413,72 @@ function latest_post() {
 		'post_status' => 'publish',
 		'tax_query'  => array(array('taxonomy' => 'ad_cats', 'field' => 'term_id', 'terms' => $categories),),
 	);
-	print_r($args);exit;
-	return(carspotAPI_adsLoop($args));
+
+	$the_query = new WP_Query( $args );
+		if ( $the_query->have_posts() ) {
+		
+			while ( $the_query->have_posts() ) {
+				$the_query->the_post();
+				$ad_id = get_the_ID();
+				
+				
+				$postAuthor = get_the_author_meta('ID');
+				$postAuthor_name = get_the_author_meta('display_name');
+				if( $is_fav == false )
+				{
+					if( $userid != "" && $postAuthor != $userid )  continue;
+				}
+				/*Get Categories*/
+				$cats = carspotAPI_get_ad_terms($ad_id,  'ad_cats');
+				$cats_name = carspotAPI_get_ad_terms_names($ad_id,  'ad_cats');		
+				/*Get Image*/
+				$thumb_img = '';
+				$thumb_img = carspotAPI_get_ad_image($ad_id, 1, 'thumb');
+				
+				/*Strip tags and limit ad description*/
+				$words 	   = wp_trim_words( strip_tags(get_the_content()), 3, '...' );
+		
+				$location  	= carspotAPI_get_adAddress($ad_id);
+				
+				$price  	= get_post_meta($ad_id, "_carspot_ad_price", true);
+				$engine     = get_post_meta($ad_id, '_carspot_ad_engine_types', true ); 
+				$milage     = get_post_meta($ad_id, '_carspot_ad_mileage', true ). " ".__("KM", "carspot-rest-api");
+				$ad_count  	= get_post_meta($ad_id, "sb_post_views_count", true);
+				
+				
+				$priceFinal = carspotAPI_get_price($price, $ad_id);
+				$ad_status  = carspotAPI_adStatus( $ad_id );
+				
+				$adsArr[] = array
+					(
+						"ad_author_id" => $postAuthor,
+						"ad_author_name" => $postAuthor_name,
+						"ad_id" 	=> $ad_id,
+						"ad_date" 	=>  get_the_date("", $ad_id),
+						"ad_title" 	=> carspotAPI_convert_uniText( get_the_title() ),
+						"ad_desc" 	=> $words,
+						"ad_status"  =>  $ad_status,
+						"ad_cats_name" => $cats_name,
+						"ad_cats" 	=> $cats,
+						"ad_images" =>  $thumb_img,
+						"ad_location" => $location,
+						"ad_price" => $priceFinal,
+						"ad_engine" => $engine,
+						"ad_milage" => $milage,
+						"ad_views" => $ad_count ,
+						"ad_video" => carspotAPI_get_adVideo($ad_id),
+						"ad_timer" => carspotAPI_get_adTimer($ad_id),
+						"ad_saved" => array("is_saved" => 0, "text" => __("Save Ad", "carspot-rest-api")),
+					
+					);		
+				
+				
+			}
+			wp_reset_postdata();	
+			
+		}
+	print_r($adsArr);exit;
+	return(1);
 }
 
 if (!function_exists('carspotAPI_blogPosts'))
