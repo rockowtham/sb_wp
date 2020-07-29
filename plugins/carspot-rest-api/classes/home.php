@@ -18,7 +18,8 @@ if (!function_exists('carspotAPI_homeScreen_get'))
 {
 	function carspotAPI_homeScreen_get()
 	{
-				
+		latest_post();
+		exit;
 		global $carspotAPI;
 		$user = wp_get_current_user();		
 		$user_id = @$user->data->ID;
@@ -329,8 +330,8 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 				{
 					$data['is_show_latest'] = false;	
 				}
-				
-				$data['latest_ads'] = $latest;
+				$adData = latest_post();
+				$data['latest_ads'] = $adData['ads'];
 			}
 			
 			return $data;	
@@ -400,6 +401,21 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 	}
 }
 
+function latest_post() {
+
+	// global 
+
+    $args = array(
+        'posts_per_page' => 3, /* how many post you need to display */
+        'offset' => 0,
+        'orderby' => 'post_date',
+        'order' => 'DESC',
+        'post_type' => 'post', /* your post type name */
+		'post_status' => 'publish',
+		'category_name' => 'category'
+	);
+	return carspotAPI_adsLoop($args);
+}
 
 if (!function_exists('carspotAPI_blogPosts'))
 {
