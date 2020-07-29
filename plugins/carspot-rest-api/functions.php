@@ -2115,7 +2115,7 @@ function carspotAPI_check_ads_validity()
 	$user = wp_get_current_user();	
 	$user_id = $user->data->ID;	
 	$uid = $user_id;
-	if( get_user_meta( $user_id, '_sb_simple_ads', true ) != 0 || get_user_meta( $uid, '_sb_simple_ads', true ) == "" )
+	if(false)
 	{
 		return $message = __( 'Please subscribe package for ad posting.', 'carspot-rest-api') ;
 	}
