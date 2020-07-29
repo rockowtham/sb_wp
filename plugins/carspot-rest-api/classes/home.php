@@ -415,11 +415,11 @@ function latest_post() {
 	);
 
 	$the_query = new WP_Query( $args );
-	echo "Last SQL-Query: {$the_query->request}";
+	// echo "Last SQL-Query: {$the_query->request}";
 		if ( $the_query->have_posts() ) {
 		
 			while ( $the_query->have_posts() ) {
-				echo "here";
+				// echo "here";
 				$the_query->the_post();
 				$ad_id = get_the_ID();
 				
@@ -450,7 +450,7 @@ function latest_post() {
 				
 				$priceFinal = carspotAPI_get_price($price, $ad_id);
 				$ad_status  = carspotAPI_adStatus( $ad_id );
-				echo $postAuthor;
+				// echo $postAuthor;
 				$adsArr[] = array
 					(
 						"ad_author_id" => $postAuthor,
@@ -479,8 +479,8 @@ function latest_post() {
 			// wp_reset_postdata();	
 			
 		}
-	print_r($adsArr,true);exit;
-	return(1);
+	// print_r($adsArr,true);exit;
+	return($adsArr);
 }
 
 if (!function_exists('carspotAPI_blogPosts'))
