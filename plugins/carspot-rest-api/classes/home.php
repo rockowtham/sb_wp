@@ -18,8 +18,6 @@ if (!function_exists('carspotAPI_homeScreen_get'))
 {
 	function carspotAPI_homeScreen_get()
 	{
-		latest_post();
-		exit;
 		global $carspotAPI;
 		$user = wp_get_current_user();		
 		$user_id = @$user->data->ID;
