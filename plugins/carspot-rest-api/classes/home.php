@@ -448,7 +448,7 @@ function latest_post() {
 				
 				$priceFinal = carspotAPI_get_price($price, $ad_id);
 				$ad_status  = carspotAPI_adStatus( $ad_id );
-				
+				echo $postAuthor;
 				$adsArr[] = array
 					(
 						"ad_author_id" => $postAuthor,
@@ -474,7 +474,7 @@ function latest_post() {
 				
 				
 			}
-			wp_reset_postdata();	
+			// wp_reset_postdata();	
 			
 		}
 	print_r($adsArr,true);exit;
