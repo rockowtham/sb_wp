@@ -402,7 +402,7 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 function latest_post() {
 
 	// global 
-	$categories = array( 2, 6 );
+	$categories = array( 21, 6 );
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
