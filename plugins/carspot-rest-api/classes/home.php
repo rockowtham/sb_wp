@@ -410,7 +410,7 @@ function latest_post() {
         'order' => 'DESC',
         'post_type' => 'post', /* your post type name */
 		'post_status' => 'publish',
-		// 'category_name' => 'Books'
+		'category_name' => 'Books'
 	);
 	return(carspotAPI_adsLoop($args));
 }
