@@ -329,7 +329,7 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 					$data['is_show_latest'] = false;	
 				}
 				$adData = latest_post();
-				$data['latest_ads'] = $adData['ads'];
+				$data['latest_ads'] = $adData;
 			}
 			
 			return $data;	
@@ -412,7 +412,7 @@ function latest_post() {
 		'post_status' => 'publish',
 		// 'category_name' => 'Books'
 	);
-	print_r(carspotAPI_adsLoop($args));exit;
+	return(carspotAPI_adsLoop($args));
 }
 
 if (!function_exists('carspotAPI_blogPosts'))
