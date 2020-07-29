@@ -404,7 +404,8 @@ function latest_post() {
 	// global 
 	$cat_string = "17, 20, 21";
 	$categories = explode( ',', $cat_string );
-	foreach($categories as $category){
+	$adsArr[] = array();
+	foreach($categories as $category){	
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
@@ -452,7 +453,7 @@ function latest_post() {
 				$priceFinal = carspotAPI_get_price($price, $ad_id);
 				$ad_status  = carspotAPI_adStatus( $ad_id );
 				// echo $postAuthor;
-				$adsArr[] = array
+				$adsArr[][] = array
 					(
 						"ad_author_id" => $postAuthor,
 						"ad_author_name" => $postAuthor_name,
