@@ -100,6 +100,7 @@ if (!function_exists('carspotAPI_adsLoop'))
 		
 		$the_query = new WP_Query( $args );
 		if ( $the_query->have_posts() ) {
+			echo "here";exit;
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
 				$ad_id = get_the_ID();
