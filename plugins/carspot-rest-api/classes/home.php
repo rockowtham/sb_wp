@@ -418,6 +418,7 @@ function latest_post() {
 		if ( $the_query->have_posts() ) {
 		
 			while ( $the_query->have_posts() ) {
+				echo "here";
 				$the_query->the_post();
 				$ad_id = get_the_ID();
 				
