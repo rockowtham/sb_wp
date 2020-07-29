@@ -402,7 +402,7 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 function latest_post() {
 
 	// global 
-	$categories = 'sell_donate,special-offers,tutoring';
+	$categories = array( 2, 6 );
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
@@ -410,7 +410,7 @@ function latest_post() {
         'order' => 'DESC',
         'post_type' => 'post', /* your post type name */
 		'post_status' => 'publish',
-		'category_name' => $categories
+		'category__in' => $categories
 	);
 	return(carspotAPI_adsLoop($args));
 }
