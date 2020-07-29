@@ -412,7 +412,7 @@ function latest_post() {
 		'post_status' => 'publish',
 		// 'category_name' => 'Books'
 	);
-	return carspotAPI_adsLoop($args);
+	print_r(carspotAPI_adsLoop($args));exit;
 }
 
 if (!function_exists('carspotAPI_blogPosts'))
