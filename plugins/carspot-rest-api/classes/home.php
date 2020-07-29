@@ -402,7 +402,7 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 function latest_post() {
 
 	// global 
-	$categories = 'Books,Special Offers,Tutoring';
+	$categories = 'sell_donate,special-offers,tutoring';
     $args = array(
         'posts_per_page' => 3, /* how many post you need to display */
         'offset' => 0,
