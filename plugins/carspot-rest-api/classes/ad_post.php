@@ -48,12 +48,12 @@ if (!function_exists('carspotAPI_post_ad_get')) {
 		global $carspotAPI;
 		global $carspot_theme;
 		$message = '';
-		if (!$carspot_theme['admin_allow_unlimited_ads']) {
-			$message = carspotAPI_check_ads_validity();
-		}
-		if (!is_super_admin(get_current_user_id())) {
-			$message = carspotAPI_check_ads_validity();
-		}
+		// if (!$carspot_theme['admin_allow_unlimited_ads']) {
+		// 	$message = carspotAPI_check_ads_validity();
+		// }
+		// if (!is_super_admin(get_current_user_id())) {
+		// 	$message = carspotAPI_check_ads_validity();
+		// }
 		if ($message != "") {
 			return array('success' => false, 'data' => '', 'message' => $message);
 		}
