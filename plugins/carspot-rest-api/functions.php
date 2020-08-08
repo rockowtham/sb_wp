@@ -705,11 +705,11 @@ if (!function_exists('carspotAPI_get_customFields'))
 		$ad_cats = carspotAPI_get_ad_terms_names($ad_id, 'ad_cats', '', '', $separator = ',');
 		//carspotAPI_terms_seprates_by($ad_id , 'ad_cats',  ', ');
 		
-		$dynamicData[] = carspotAPI_getSubCats('select','ad_sub_cats','ad_cats','',$ad_cats,'',false);
+		$dynamicData[] = $price  	= get_post_meta($ad_id, "_carspot_ad_categories", true);
 		$dynamicData[] =  array("key" => __("Category", "carspot-rest-api"), "value" => $ad_cats, "type" => '');
 		$dynamicData[] =  array("key" => __("Date", "carspot-rest-api"), "value" => get_the_date("", $ad_id), "type" => '');
 		$dynamicData[] =  array("key" => __("Mileage ", "carspot-rest-api"), "value" => carspot_numberFormat($ad_id), "type" => '');	
-		
+		// carspotAPI_ad_subcats_get()
 		
 		$taxonomy_objects = get_object_taxonomies( 'ad_post', 'objects' );
 		$countNum 		  = 0;

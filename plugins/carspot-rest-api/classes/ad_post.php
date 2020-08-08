@@ -622,7 +622,10 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 		$ad_country		 = isset($json_data['ad_country']) ? $json_data['ad_country'] : '';
 		$ad_description  = isset($json_data['ad_description']) ? trim($json_data['ad_description']) : '';
 		$ad_status 		 = ($carspot_theme['sb_ad_approval'] == 'manual') ? 'pending' : 'publish';
+		$ad_categories  = isset($json_data['ad_categories'])?$json_data['ad_categories'] : '';
 
+		update_post_meta($pid, '_carspot_ad_categories', $ad_categories);
+		
 		$isUpdate	=	false;
 		if ((isset($json_data['ad_id']) && $json_data['ad_id'] != "") && (isset($json_data['is_update']) && $json_data['is_update'] != "")) {
 			$pid	=	$json_data['ad_id'];
