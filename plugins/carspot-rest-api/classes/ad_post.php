@@ -644,26 +644,26 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 			update_post_meta($pid, '_carspot_ad_categories', $ad_categories);
 			// echo $pid;exit;
 			delete_user_meta($user_id, 'ad_in_progress');
-			if (!is_super_admin($user_id)) {
-				// $simple_ads_check	=	get_user_meta($user_id, '_sb_simple_ads', true);
-				$simple_ads_check = 1;
-				$expiry_check	    =   get_user_meta($user_id, '_carspot_expire_ads', true);
+			// if (!is_super_admin($user_id)) {
+			// 	// $simple_ads_check	=	get_user_meta($user_id, '_sb_simple_ads', true);
+			// 	$simple_ads_check = 1;
+			// 	$expiry_check	    =   get_user_meta($user_id, '_carspot_expire_ads', true);
 
-				if ($simple_ads_check == -1) {
-				} else if ($simple_ads_check <= 0) {
-					$posted_msg = __("You have no more ads to post", "carspot-rest-api");
-					$response = array('success' => false, 'data' => '', 'message' => $posted_msg, 'extra' => '');
-					return $response;
-				}
+			// 	if ($simple_ads_check == -1) {
+			// 	} else if ($simple_ads_check <= 0) {
+			// 		$posted_msg = __("You have no more ads to post", "carspot-rest-api");
+			// 		$response = array('success' => false, 'data' => '', 'message' => $posted_msg, 'extra' => '');
+			// 		return $response;
+			// 	}
 
-				if ($expiry_check != '-1') {
-					if ($expiry_check < date('Y-m-d')) {
-						$posted_msg = __("Your package has expired", "carspot-rest-api");
-						$response = array('success' => false, 'data' => '', 'message' => $posted_msg, 'extra' => '');
-						return $response;
-					}
-				}
-			}
+			// 	if ($expiry_check != '-1') {
+			// 		if ($expiry_check < date('Y-m-d')) {
+			// 			$posted_msg = __("Your package has expired", "carspot-rest-api");
+			// 			$response = array('success' => false, 'data' => '', 'message' => $posted_msg, 'extra' => '');
+			// 			return $response;
+			// 		}
+			// 	}
+			// }
 
 			$simple_ads	=	get_user_meta($user_id, '_sb_simple_ads', true);
 			if ($simple_ads > 0 && !is_super_admin($user_id)) {
