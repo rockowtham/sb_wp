@@ -1466,6 +1466,12 @@ if (!function_exists('carspotAPI_ad_posts_get_all')) {
 			$ad_detail[$count]['ad_views']      =  get_post_meta($r->ID, "sb_post_views_count", true);
 			$ad_detail[$count]['ad_saved']      =  array("is_saved" => 0, "text" => __("Save Ad", "carspot-rest-api"));
 			$ad_detail[$count]['ad_timer']      =  carspotAPI_get_adTimer($r->ID);
+			$ad_detail[$count]['engine_size'] = get_post_meta($r->ID,'_carspot_ad_engine_capacities',true);
+			$ad_detail[$count]['body_type'] = get_post_meta($r->ID,'_carspot_ad_body_types',true);
+			$ad_detail[$count]['ad_model']  =  get_post_meta($r->ID, '_carspot_ad_model', true);
+			$ad_detail[$count]['ad_version']  = get_post_meta($r->ID, '_carspot_ad_version', true);
+			$ad_detail[$count]['ad_4thlevel']  = get_post_meta($r->ID, '_carspot_ad_4thlevel', true);
+			$ad_detail[$count]['ad_year'] = get_post_meta($r->ID,'ad_years',true);
 			$count++;
 		}
 		wp_reset_postdata();
