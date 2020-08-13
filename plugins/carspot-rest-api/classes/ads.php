@@ -358,7 +358,7 @@ function carspotAPI_ad_posts_get( $request )
 	$ad_detail['ad_yvideo']			=  get_post_meta( $ad_id, '_carspot_ad_yvideo', true );
 	$ad_detail['location_lat']			=  get_post_meta( $ad_id, '_carspot_ad_map_lat', true );
 	$ad_detail['location_long']			=  get_post_meta( $ad_id, '_carspot_ad_map_long', true );
-	$ad_detail['ad_phone']			=  get_post_meta( $ad_id, '_carspot_ad_price', true );
+	$ad_detail['ad_phone']			=  get_post_meta( $ad_id, '_carspot_ad_phone_number', true );
 	$ad_detail['add_type'] 		    = get_post_meta( $ad_id, '_carspot_add_type', true );
 
 	$related_ads['is_show'] = $related_ads_is_show;
