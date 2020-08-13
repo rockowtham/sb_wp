@@ -472,6 +472,17 @@ function latest_post() {
 						"ad_video" => carspotAPI_get_adVideo($ad_id),
 						"ad_timer" => carspotAPI_get_adTimer($ad_id),
 						"ad_saved" => array("is_saved" => 0, "text" => __("Save Ad", "carspot-rest-api")),
+						"engine_size" => get_post_meta($ad_id,'_carspot_ad_engine_capacities',true),
+						"body_type" => get_post_meta($ad_id,'_carspot_ad_body_types',true),
+						"ad_model"  =>  get_post_meta($ad_id, '_carspot_ad_model', true),
+						"ad_version"  => get_post_meta($ad_id, '_carspot_ad_version', true),
+						"ad_4thlevel"  => get_post_meta($ad_id, '_carspot_ad_4thlevel', true),
+						"ad_year" => get_post_meta($ad_id,'ad_warranty',true),
+						"ad_display_name" => get_post_meta($ad_id, '_carspot_poster_name', true),
+						// _carspot_ad_engine_capacities
+						//body_type
+						//year
+						
 					
 					);		
 				
