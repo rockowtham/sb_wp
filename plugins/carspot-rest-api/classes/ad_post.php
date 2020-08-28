@@ -642,8 +642,8 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 			} else {
 				$pid	=	$json_data['ad_id'];
 			}
-			print_r($ad_categories);
-			echo $ad_categories_string = parse_json($ad_categories);exit;
+			// print_r($ad_categories);
+			$ad_categories_string = parse_json($ad_categories);
 			update_post_meta($pid, '_carspot_ad_categories', $ad_categories);
 			update_post_meta($pid, '_carspot_ad_categories_string', $ad_categories_string);
 			// echo $pid;exit;
@@ -1055,17 +1055,16 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 	}
 }
 function parse_json($json)
-{
+{	 
+	 $json1['categories'] = $json;
 	$parent_id = '';
 	$op_array = array();
-	foreach ($json as $key => $value) {
+	foreach ($json1 as $key => $value) {
 		 $parent_id = $value['id'];
 		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
 			fetch_id($value['sub_cat'], $op_array);
-		} else {
-			array_push($op_array, $parent_id);
-		}
-		print_r($op_array);
+		} 
+		array_push($op_array, $parent_id);	
 		return implode(",", $op_array);
 	}
 }
