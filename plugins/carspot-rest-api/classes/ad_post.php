@@ -608,30 +608,6 @@ function carspotAPI_post_ad_post_hooks()
 	);
 }
 
-function parse_json($json)
-{
-	$parent_id = '';
-	$op_array = array();
-	foreach ($json as $key => $value) {
-		echo $parent_id = $value['id'];
-		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
-			fetch_id($value['sub_cat'], $op_array);
-		} else {
-			array_push($op_array, $parent_id);
-		}
-		return implode(",", $op_array);
-	}
-}
-function fetch_id($ip_array, &$op_array)
-{
-	array_push($op_array, $ip_array['id']);
-	if (isset($ip_array['sub_cat']) && (count($ip_array['sub_cat']) > 0)) {
-		fetch_id($ip_array['sub_cat'], $op_array);
-	} else {
-		return $op_array;
-	}
-}
-
 if (!function_exists('carspotAPI_post_ad_post')) {
 	function carspotAPI_post_ad_post($request)
 	{
@@ -1077,7 +1053,29 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 		return $response;
 	}
 }
-
+function parse_json($json)
+{
+	$parent_id = '';
+	$op_array = array();
+	foreach ($json as $key => $value) {
+		echo $parent_id = $value['id'];
+		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
+			fetch_id($value['sub_cat'], $op_array);
+		} else {
+			array_push($op_array, $parent_id);
+		}
+		return implode(",", $op_array);
+	}
+}
+function fetch_id($ip_array, &$op_array)
+{
+	array_push($op_array, $ip_array['id']);
+	if (isset($ip_array['sub_cat']) && (count($ip_array['sub_cat']) > 0)) {
+		fetch_id($ip_array['sub_cat'], $op_array);
+	} else {
+		return $op_array;
+	}
+}
 
 add_action('rest_api_init', 'carspotAPI_postad_image_delete', 0);
 function carspotAPI_postad_image_delete()
