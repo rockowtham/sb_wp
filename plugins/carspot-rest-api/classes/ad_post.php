@@ -666,8 +666,9 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 			} else {
 				$pid	=	$json_data['ad_id'];
 			}
+			echo $ad_categories_string = parse_json(json_decode($ad_categories,true));exit;
 			update_post_meta($pid, '_carspot_ad_categories', $ad_categories);
-			update_post_meta($pid, '_carspot_ad_categories_string', parse_json(json_decode($ad_categories,true)));
+			update_post_meta($pid, '_carspot_ad_categories_string', $ad_categories_string);
 			// echo $pid;exit;
 			delete_user_meta($user_id, 'ad_in_progress');
 			// if (!is_super_admin($user_id)) {
