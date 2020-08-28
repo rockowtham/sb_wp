@@ -613,7 +613,7 @@ function parse_json($json)
 	$parent_id = '';
 	$op_array = array();
 	foreach ($json as $key => $value) {
-		$parent_id = $value['id'];
+		echo $parent_id = $value['id'];
 		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
 			fetch_id($value['sub_cat'], $op_array);
 		} else {
