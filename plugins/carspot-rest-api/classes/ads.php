@@ -83,6 +83,7 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['ad_cat'] 			= $cat_name;
 		$ad_detail['ad_title'] 			= $post->post_title;
 		$ad_detail['ad_desc'] 			= $description;
+		$ad_detail['ad_description']	= $description;
 		$ad_detail['ad_date'] 			= get_the_date("", $post->ID);
 		$ad_detail['ad_price'] 			= carspotAPI_get_price('', $post->ID);
 		$poster_name  					= get_post_meta($post->ID, '_carspot_poster_name', true);
@@ -91,7 +92,6 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['featured_ads'] 		= get_post_meta($post->ID,  '_carspot_featured_ads', true);
 		$ad_detail['expire_date'] 		= get_post_meta($post->ID,  '_carspot_expire_ads', true);
 		$ad_detail['ad_status'] 		= get_post_meta($post->ID, '_carspot_ad_status_', true);
-
 
 		$ad_detail['ad_timer'] 		    = carspotAPI_get_adTimer($post->ID);
 		$poster_phone 					= get_post_meta($post->ID, '_carspot_poster_contact', true);
@@ -349,7 +349,18 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['ad_model']  =  get_post_meta($ad_id, '_carspot_ad_model', true);
 		$ad_detail['ad_version']  = get_post_meta($ad_id, '_carspot_ad_version', true);
 		$ad_detail['ad_4thlevel']  = get_post_meta($ad_id, '_carspot_ad_4thlevel', true);
-		$ad_detail['ad_year'] = get_post_meta($ad_id, 'ad_warranty', true);
+		$ad_detail['ad_year'] = get_post_meta($ad_id, 'ad_years', true);
+		$ad_detail['ad_assembles'] = wp_get_object_terms($ad_id,  'ad_assembles', array('fields' => 'names'));
+		$ad_detail['ad_price_type'] = get_post_meta($ad_id, '_carspot_ad_price_type', true);
+		$ad_detail['ad_warranty'] = get_post_meta($ad_id, 'ad_warranty', true);
+		$ad_detail['ad_user_name'] = get_post_meta($ad_id, 'ad_user_name', true);
+		$ad_detail['ad_body_types'] = get_post_meta($ad_id, '_carspot_ad_body_types', true);
+		$ad_detail['ad_map_long']			=  get_post_meta($ad_id, '_carspot_ad_map_long_extra', true);
+		$ad_detail['ad_features']  = get_post_meta($ad_id, '_carspot_ad_features', true);
+		$ad_detail['ad_map_lat'] = get_post_meta($ad_id, '_carspot_ad_map_lat_extra', true);
+		$ad_detail['ad_mileage'] = get_post_meta($ad_id, '_carspot_ad_mileage', true);
+		$ad_detail['ad_user_address'] = get_post_meta($ad_id, '_carspot_ad_user_address', true);
+
 
 		$related_ads['is_show'] = $related_ads_is_show;
 		/* Related Articles Ends */
@@ -1466,12 +1477,23 @@ if (!function_exists('carspotAPI_ad_posts_get_all')) {
 			$ad_detail[$count]['ad_views']      =  get_post_meta($r->ID, "sb_post_views_count", true);
 			$ad_detail[$count]['ad_saved']      =  array("is_saved" => 0, "text" => __("Save Ad", "carspot-rest-api"));
 			$ad_detail[$count]['ad_timer']      =  carspotAPI_get_adTimer($r->ID);
-			$ad_detail[$count]['engine_size'] = get_post_meta($r->ID,'_carspot_ad_engine_capacities',true);
-			$ad_detail[$count]['body_type'] = get_post_meta($r->ID,'_carspot_ad_body_types',true);
+			$ad_detail[$count]['engine_size'] = get_post_meta($r->ID, '_carspot_ad_engine_capacities', true);
+			$ad_detail[$count]['body_type'] = get_post_meta($r->ID, '_carspot_ad_body_types', true);
 			$ad_detail[$count]['ad_model']  =  get_post_meta($r->ID, '_carspot_ad_model', true);
 			$ad_detail[$count]['ad_version']  = get_post_meta($r->ID, '_carspot_ad_version', true);
 			$ad_detail[$count]['ad_4thlevel']  = get_post_meta($r->ID, '_carspot_ad_4thlevel', true);
-			$ad_detail[$count]['ad_year'] = get_post_meta($r->ID,'ad_years',true);
+			$ad_detail[$count]['ad_year'] = get_post_meta($r->ID, 'ad_years', true);
+			// $ad_detail['ad_year'] = get_post_meta($ad_id, 'ad_years', true);
+			$ad_detail['ad_assembles'] = wp_get_object_terms($r->ID,  'ad_assembles', array('fields' => 'names'));
+			$ad_detail['ad_price_type'] = get_post_meta($r->ID, '_carspot_ad_price_type', true);
+			$ad_detail['ad_warranty'] = get_post_meta($r->ID, 'ad_warranty', true);
+			$ad_detail['ad_user_name'] = get_post_meta($r->ID, 'ad_user_name', true);
+			$ad_detail['ad_body_types'] = get_post_meta($r->ID, '_carspot_ad_body_types', true);
+			$ad_detail['ad_map_long']			=  get_post_meta($r->ID, '_carspot_ad_map_long_extra', true);
+			$ad_detail['ad_features']  = get_post_meta($r->ID, '_carspot_ad_features', true);
+			$ad_detail['ad_map_lat'] = get_post_meta($r->ID, '_carspot_ad_map_lat_extra', true);
+			$ad_detail['ad_mileage'] = get_post_meta($r->ID, '_carspot_ad_mileage', true);
+			$ad_detail['ad_user_address'] = get_post_meta($r->ID, '_carspot_ad_user_address', true);
 			$count++;
 		}
 		wp_reset_postdata();
