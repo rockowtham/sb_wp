@@ -1056,11 +1056,11 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 }
 function parse_json($json)
 {
-	print_r($json);
 	$parent_id = '';
 	$op_array = array();
 	foreach ($json as $key => $value) {
-		echo $parent_id = $value['id'];
+		print_r($value);exit;
+		 $parent_id = $value['id'];
 		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
 			fetch_id($value['sub_cat'], $op_array);
 		} else {
