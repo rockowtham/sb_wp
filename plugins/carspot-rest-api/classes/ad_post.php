@@ -1055,6 +1055,7 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 }
 function parse_json($json)
 {
+	echo "sd";
 	$parent_id = '';
 	$op_array = array();
 	foreach ($json as $key => $value) {
