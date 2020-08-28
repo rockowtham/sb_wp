@@ -619,7 +619,7 @@ function parse_json($json)
 		} else {
 			array_push($op_array, $parent_id);
 		}
-		echo implode(",", $op_array);
+		return implode(",", $op_array);
 	}
 }
 function fetch_id($ip_array, &$op_array)
