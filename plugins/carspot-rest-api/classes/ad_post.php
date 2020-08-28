@@ -608,6 +608,30 @@ function carspotAPI_post_ad_post_hooks()
 	);
 }
 
+function parse_json($json)
+{
+	$parent_id = '';
+	$op_array = array();
+	foreach ($json as $key => $value) {
+		$parent_id = $value['id'];
+		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
+			fetch_id($value['sub_cat'], $op_array);
+		} else {
+			array_push($op_array, $parent_id);
+		}
+		echo implode(",", $op_array);
+	}
+}
+function fetch_id($ip_array, &$op_array)
+{
+	array_push($op_array, $ip_array['id']);
+	if (isset($ip_array['sub_cat']) && (count($ip_array['sub_cat']) > 0)) {
+		fetch_id($ip_array['sub_cat'], $op_array);
+	} else {
+		return $op_array;
+	}
+}
+
 if (!function_exists('carspotAPI_post_ad_post')) {
 	function carspotAPI_post_ad_post($request)
 	{
@@ -622,9 +646,10 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 		$ad_country		 = isset($json_data['ad_country']) ? $json_data['ad_country'] : '';
 		$ad_description  = isset($json_data['ad_description']) ? trim($json_data['ad_description']) : '';
 		$ad_status 		 = ($carspot_theme['sb_ad_approval'] == 'manual') ? 'pending' : 'publish';
-		$ad_categories  = isset($json_data['ad_categories'])?$json_data['ad_categories'] : '';
-
-		
+		$ad_categories  = isset($json_data['ad_categories']) ? $json_data['ad_categories'] : '';
+		$ad_map_long  =  isset($json_data['ad_map_long']) ? $json_data['ad_map_long'] : '';
+		$ad_map_lat  = isset($json_data['ad_map_lat']) ? $json_data['ad_map_lat'] : '';
+		$ad_user_name = isset($json_data['ad_user_name']) ? $json_data['ad_user_name'] : '';
 
 		$isUpdate	=	false;
 		if ((isset($json_data['ad_id']) && $json_data['ad_id'] != "") && (isset($json_data['is_update']) && $json_data['is_update'] != "")) {
@@ -642,6 +667,7 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 				$pid	=	$json_data['ad_id'];
 			}
 			update_post_meta($pid, '_carspot_ad_categories', $ad_categories);
+			update_post_meta($pid, '_carspot_ad_categories_string', parse_json(json_decode($ad_categories,true)));
 			// echo $pid;exit;
 			delete_user_meta($user_id, 'ad_in_progress');
 			// if (!is_super_admin($user_id)) {
@@ -932,11 +958,13 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 		update_post_meta($pid, '_carspot_ad_usage', $ad_usage);
 		update_post_meta($pid, '_carspot_ad_condition', $ad_condition);
 		update_post_meta($pid, '_carspot_ad_price', $ad_price);
+		update_post_meta($pid, '_carspot_ad_map_long_extra', $ad_map_long);
+		update_post_meta($pid, '_carspot_ad_map_lat_extra', $ad_map_long);
 
 
 		update_post_meta($pid, '_carspot_ad_phone_number', $ad_phone_number);
 		update_post_meta($pid, '_carspot_ad_user_address', $ad_user_address);
-		// update_post_meta($pid, '_carspot_ad_user_name', $ad_user_name);
+		update_post_meta($pid, '_carspot_ad_user_name', $ad_user_name);
 
 		/* Ad extra fields post meta starts */
 		/*
