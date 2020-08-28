@@ -1059,13 +1059,13 @@ function parse_json($json)
 	$parent_id = '';
 	$op_array = array();
 	foreach ($json as $key => $value) {
-		print_r($value);exit;
 		 $parent_id = $value['id'];
 		if (isset($value['sub_cat']) && (count($value['sub_cat']) > 0)) {
 			fetch_id($value['sub_cat'], $op_array);
 		} else {
 			array_push($op_array, $parent_id);
 		}
+		print_r($op_array);
 		return implode(",", $op_array);
 	}
 }
