@@ -644,8 +644,8 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 			}
 			// print_r($ad_categories);
 			$custom[ "_carspot_ad_categories_string" ] = parse_json($ad_categories);
-			add_post_meta(940, '_carspot_ad_categories', $ad_categories);
-			update_post_meta(940, '_carspot_ad_categories_string',  $custom[ "_carspot_ad_categories_string" ] );
+			update_post_meta($pid, '_carspot_ad_categories', $ad_categories);
+			update_post_meta($pid, '_carspot_ad_categories_string',  $custom[ "_carspot_ad_categories_string" ] );
 			// echo get_post_meta($ad_id, '_carspot_ad_categories_string', true);
 			// echo $pid;exit;
 			delete_user_meta($user_id, 'ad_in_progress');
@@ -944,6 +944,7 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 		update_post_meta($pid, '_carspot_ad_phone_number', $ad_phone_number);
 		update_post_meta($pid, '_carspot_ad_user_address', $ad_user_address);
 		update_post_meta($pid, '_carspot_ad_user_name', $ad_user_name);
+
 
 		/* Ad extra fields post meta starts */
 		/*
