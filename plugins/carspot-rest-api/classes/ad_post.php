@@ -2231,7 +2231,7 @@ if(!function_exists('carspotAPI_post_category_ad')){
 			'meta_query' => array(
 				'key' => '_carspot_ad_categories_string',
 				'value' => $category_id,
-				'meta_compare' => 'LIKE'
+				'meta_compare' => 'IN'
 			)
 		);
 		$the_query = new WP_Query( $args );
@@ -2298,6 +2298,18 @@ if(!function_exists('carspotAPI_post_category_ad')){
 						"ad_4thlevel"  => get_post_meta($ad_id, '_carspot_ad_4thlevel', true),
 						"ad_year" => get_post_meta($ad_id,'ad_warranty',true),
 						"ad_display_name" => get_post_meta($ad_id, '_carspot_poster_name', true),
+					    'ad_year' => get_post_meta($ad_id, 'ad_years', true),
+		                'ad_assembles' => wp_get_object_terms($ad_id,  'ad_assembles', array('fields' => 'names')),
+		                'ad_price_type' => get_post_meta($ad_id, '_carspot_ad_price_type', true),
+		                'ad_warranty' => get_post_meta($ad_id, 'ad_warranty', true),
+	                    'ad_user_name'  => get_post_meta($ad_id, 'ad_user_name', true),
+		                'ad_body_types' => get_post_meta($ad_id, '_carspot_ad_body_types', true),
+		                'ad_map_long'			=>  get_post_meta($ad_id, '_carspot_ad_map_long_extra', true),
+		                'ad_features'  => get_post_meta($ad_id, '_carspot_ad_features', true),
+		                'ad_map_lat' => get_post_meta($ad_id, '_carspot_ad_map_lat_extra', true),
+		                'ad_mileage' => get_post_meta($ad_id, '_carspot_ad_mileage', true),
+						"ad_user_address" => get_post_meta($ad_id, '_carspot_ad_user_address', true)
+
 						// _carspot_ad_engine_capacities
 						//body_type
 						//year
