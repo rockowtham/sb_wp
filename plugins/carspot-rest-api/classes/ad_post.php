@@ -2201,3 +2201,116 @@ function carspotAPI_dynamic_templateID($cat_id)
 	}
 	return $termTemplate;
 }
+
+
+add_action('rest_api_init', 'carspotAPI_post_category_ad_hooks', 0);
+ 
+function carspotAPI_post_category_ad_hooks(){
+   register_rest_route(
+	   'carspot/v1',
+	   '/ad_category/',
+	   array(
+		   'methods' => 'GET,POST',
+		   'callback' => 'carspotAPI_post_category_ad',
+		   'permission_callback' => function () {
+			   return carspotAPI_basic_auth();
+		   }
+	   )
+
+   );
+}
+
+if(!function_exists('carspotAPI_post_category_ad')){
+	function carspotAPI_post_category_ad($request){
+
+		$json_req = $request->get_json_params();
+		$category_id = isset($json_req['cat_id']) ? $json_req['cat_id']:'';
+		$args = array(
+			'post_type' => 'ad_post', /* your post type name */
+			'post_status' => 'publish',
+			'meta_query' => array(
+				'key' => '_carspot_ad_categories_string',
+				'value' => $category_id,
+				'meta_compare' => 'LIKE'
+			)
+		);
+		$the_query = new WP_Query( $args );
+
+		if ( $the_query->have_posts() ) {
+		
+			while ( $the_query->have_posts() ) {
+				// echo "here";
+				$the_query->the_post();
+				$ad_id = get_the_ID();
+				
+				
+				$postAuthor = get_the_author_meta('ID');
+				$postAuthor_name = get_the_author_meta('display_name');
+				if( $is_fav == false )
+				{
+					if( $userid != "" && $postAuthor != $userid )  continue;
+				}
+				/*Get Categories*/
+				$cats = carspotAPI_get_ad_terms($ad_id,  'ad_cats');
+				$cats_name = carspotAPI_get_ad_terms_names($ad_id,  'ad_cats');		
+				/*Get Image*/
+				$thumb_img = '';
+				$thumb_img = carspotAPI_get_ad_image($ad_id, 1, 'thumb');
+				
+				/*Strip tags and limit ad description*/
+				$words 	   = wp_trim_words( strip_tags(get_the_content()), 3, '...' );
+		
+				$location  	= carspotAPI_get_adAddress($ad_id);
+				
+				$price  	= get_post_meta($ad_id, "_carspot_ad_price", true);
+				$engine     = get_post_meta($ad_id, '_carspot_ad_engine_types', true ); 
+				$milage     = get_post_meta($ad_id, '_carspot_ad_mileage', true ). " ".__("KM", "carspot-rest-api");
+				$ad_count  	= get_post_meta($ad_id, "sb_post_views_count", true);
+				
+				
+				$priceFinal = carspotAPI_get_price($price, $ad_id);
+				$ad_status  = carspotAPI_adStatus( $ad_id );
+				// echo $postAuthor;
+				$adsArr[] = array
+					(
+						"ad_author_id" => $postAuthor,
+						"ad_author_name" => $postAuthor_name,
+						"ad_id" 	=> $ad_id,
+						"ad_date" 	=>  get_the_date("", $ad_id),
+						"ad_title" 	=> carspotAPI_convert_uniText( get_the_title() ),
+						"ad_desc" 	=> $words,
+						"ad_status"  =>  $ad_status,
+						"ad_cats_name" => $cats_name,
+						"ad_cats" 	=> $cats,
+						"ad_images" =>  $thumb_img,
+						"ad_location" => $location,
+						"ad_price" => $priceFinal,
+						"ad_engine" => $engine,
+						"ad_milage" => $milage,
+						"ad_views" => $ad_count ,
+						"ad_video" => carspotAPI_get_adVideo($ad_id),
+						"ad_timer" => carspotAPI_get_adTimer($ad_id),
+						"ad_saved" => array("is_saved" => 0, "text" => __("Save Ad", "carspot-rest-api")),
+						"engine_size" => get_post_meta($ad_id,'_carspot_ad_engine_capacities',true),
+						"body_type" => get_post_meta($ad_id,'_carspot_ad_body_types',true),
+						"ad_model"  =>  get_post_meta($ad_id, '_carspot_ad_model', true),
+						"ad_version"  => get_post_meta($ad_id, '_carspot_ad_version', true),
+						"ad_4thlevel"  => get_post_meta($ad_id, '_carspot_ad_4thlevel', true),
+						"ad_year" => get_post_meta($ad_id,'ad_warranty',true),
+						"ad_display_name" => get_post_meta($ad_id, '_carspot_poster_name', true),
+						// _carspot_ad_engine_capacities
+						//body_type
+						//year
+						
+					
+					);		
+				
+				
+			}
+			// wp_reset_postdata();	
+			
+		}
+		return($adsArr);
+	   
+	}
+}
