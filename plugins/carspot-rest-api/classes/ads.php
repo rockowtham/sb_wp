@@ -92,6 +92,7 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['featured_ads'] 		= get_post_meta($post->ID,  '_carspot_featured_ads', true);
 		$ad_detail['expire_date'] 		= get_post_meta($post->ID,  '_carspot_expire_ads', true);
 		$ad_detail['ad_status'] 		= get_post_meta($post->ID, '_carspot_ad_status_', true);
+		$ad_detail['ad_categories'] 	= get_post_meta($post->ID, "_carspot_ad_categories", true);
 
 		$ad_detail['ad_timer'] 		    = carspotAPI_get_adTimer($post->ID);
 		$poster_phone 					= get_post_meta($post->ID, '_carspot_poster_contact', true);
@@ -343,7 +344,7 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['location_lat']			=  get_post_meta($ad_id, '_carspot_ad_map_lat', true);
 		$ad_detail['location_long']			=  get_post_meta($ad_id, '_carspot_ad_map_long', true);
 		$ad_detail['ad_phone']			=  get_post_meta($ad_id, '_carspot_ad_phone_number', true);
-		$ad_detail['add_type'] 		    = get_post_meta($ad_id, '_carspot_add_type', true);
+		$ad_detail['add_type'] 		    = get_post_meta($ad_id, 'ad_type', true);
 		$ad_detail['engine_size'] = get_post_meta($ad_id, '_carspot_ad_engine_capacities', true);
 		$ad_detail['body_type'] = get_post_meta($ad_id, '_carspot_ad_body_types', true);
 		$ad_detail['ad_model']  =  get_post_meta($ad_id, '_carspot_ad_model', true);
