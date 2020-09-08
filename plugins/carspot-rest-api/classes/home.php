@@ -480,6 +480,7 @@ function latest_post() {
 						"ad_year" => get_post_meta($ad_id,'ad_warranty',true),
 						"ad_display_name" => get_post_meta($ad_id, '_carspot_poster_name', true),
 						'ad_year' => get_post_meta($ad_id, 'ad_years', true),
+						'add_years' =>  get_post_meta($ad_id, '_carspot_ad_years', true),
 		                'ad_assembles' => wp_get_object_terms($ad_id,  'ad_assembles', array('fields' => 'names')),
 		                'ad_price_type' => get_post_meta($ad_id, '_carspot_ad_price_type', true),
 		                'ad_warranty' => get_post_meta($ad_id, 'ad_warranty', true),
