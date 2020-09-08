@@ -483,7 +483,7 @@ function latest_post() {
 						'add_years' =>  get_post_meta($ad_id, '_carspot_ad_years', true),
 		                'ad_assembles' => wp_get_object_terms($ad_id,  'ad_assembles', array('fields' => 'names')),
 		                'ad_price_type' => get_post_meta($ad_id, '_carspot_ad_price_type', true),
-		                'ad_warranty' => get_post_meta($ad_id, 'ad_warranty', true),
+		                'ad_warranty' => get_post_meta($ad_id, '_carspot_ad_warranty', true),
 	                    'ad_user_name'  => get_post_meta($ad_id, 'ad_user_name', true),
 		                'ad_body_types' => get_post_meta($ad_id, '_carspot_ad_body_types', true),
 		                'ad_map_long'			=>  get_post_meta($ad_id, '_carspot_ad_map_long_extra', true),
