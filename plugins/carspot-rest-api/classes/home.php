@@ -489,7 +489,8 @@ function latest_post() {
 		                'ad_features'  => get_post_meta($ad_id, '_carspot_ad_features', true),
 		                'ad_map_lat' => get_post_meta($ad_id, '_carspot_ad_map_lat_extra', true),
 		                'ad_mileage' => get_post_meta($ad_id, '_carspot_ad_mileage', true),
-						"ad_user_address" => get_post_meta($ad_id, '_carspot_ad_user_address', true)
+						"ad_user_address" => get_post_meta($ad_id, '_carspot_ad_user_address', true),
+						"ad_categories" => get_post_meta($ad_id, "_carspot_ad_categories", true)
 						// _carspot_ad_engine_capacities
 						//body_type
 						//year
