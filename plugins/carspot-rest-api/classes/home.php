@@ -483,7 +483,7 @@ function latest_post() {
 						'add_years' =>  get_post_meta($ad_id, '_carspot_ad_years', true),
 		                'ad_assembles' => wp_get_object_terms($ad_id,  'ad_assembles', array('fields' => 'names')),
 		                'ad_price_type' => get_post_meta($ad_id, '_carspot_ad_price_type', true),
-		                'ad_warranty' => get_post_meta($ad_id, '_carspot_ad_warranty', true),
+		                'ad_warranty' => get_post_meta($ad_id, '_carspot_ad_warranty1', true),
 	                    'ad_user_name'  => get_post_meta($ad_id, 'ad_user_name', true),
 		                'ad_body_types' => get_post_meta($ad_id, '_carspot_ad_body_types', true),
 		                'ad_map_long'			=>  get_post_meta($ad_id, '_carspot_ad_map_long_extra', true),
@@ -491,7 +491,8 @@ function latest_post() {
 		                'ad_map_lat' => get_post_meta($ad_id, '_carspot_ad_map_lat_extra', true),
 		                'ad_mileage' => get_post_meta($ad_id, '_carspot_ad_mileage', true),
 						"ad_user_address" => get_post_meta($ad_id, '_carspot_ad_user_address', true),
-						"ad_categories" => get_post_meta($ad_id, "_carspot_ad_categories", true)
+						"ad_categories" => get_post_meta($ad_id, "_carspot_ad_categories", true),
+						'ad_type' 	=> get_post_meta($ad_id, "_carspot_ad_type1", true)
 						// _carspot_ad_engine_capacities
 						//body_type
 						//year

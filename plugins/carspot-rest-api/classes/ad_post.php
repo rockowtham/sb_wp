@@ -867,8 +867,17 @@ if (!function_exists('carspotAPI_post_ad_post')) {
 
 		/*setting taxonomoies selected*/
 
+		if (isset($ad_type) && !empty($ad_type)) {
+            $carspot_ad_type_arr = explode('|',$ad_type);
+            $carspot_ad_type_arr = $carspot_ad_type_arr[1];
+            update_post_meta($pid, '_carspot_ad_type1', ($carspot_ad_type_arr));
+		}
+		if (isset($ad_warranty) && !empty($ad_warranty)) {
+            $carspot_ad_warrantyr = explode('|',$ad_warranty);
+            $carspot_ad_warranty_arr = $carspot_ad_warrantyr[1];
+            update_post_meta($pid, '_carspot_ad_warranty1', ($carspot_ad_warranty_arr));
+		}
 		carspotAPI_adPost_update_terms($pid, $ad_condition, 'ad_condition');
-		carspotAPI_adPost_update_terms($pid, $ad_type, 'ad_type');
 		carspotAPI_adPost_update_terms($pid, $ad_warranty, 'ad_warranty');
 		carspotAPI_adPost_update_terms($pid, $ad_years, 'ad_years');
 		carspotAPI_adPost_update_terms($pid, $ad_body_types, 'ad_body_types');
