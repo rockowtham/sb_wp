@@ -93,6 +93,7 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['expire_date'] 		= get_post_meta($post->ID,  '_carspot_expire_ads', true);
 		$ad_detail['ad_status'] 		= get_post_meta($post->ID, '_carspot_ad_status_', true);
 		$ad_detail['ad_categories'] 	= get_post_meta($post->ID, "_carspot_ad_categories", true);
+		$ad_detail['ad_type'] 	= get_post_meta($post->ID, "ad_type", true);
 
 		$ad_detail['ad_timer'] 		    = carspotAPI_get_adTimer($post->ID);
 		$poster_phone 					= get_post_meta($post->ID, '_carspot_poster_contact', true);
