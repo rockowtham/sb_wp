@@ -1490,16 +1490,16 @@ if (!function_exists('carspotAPI_ad_posts_get_all')) {
 			$ad_detail[$count]['ad_4thlevel']  = get_post_meta($r->ID, '_carspot_ad_4thlevel', true);
 			$ad_detail[$count]['ad_year'] = get_post_meta($r->ID, 'ad_years', true);
 			// $ad_detail['ad_year'] = get_post_meta($ad_id, 'ad_years', true);
-			$ad_detail['ad_assembles'] = wp_get_object_terms($r->ID,  'ad_assembles', array('fields' => 'names'));
-			$ad_detail['ad_price_type'] = get_post_meta($r->ID, '_carspot_ad_price_type', true);
-			$ad_detail['ad_warranty'] = get_post_meta($r->ID, 'ad_warranty', true);
-			$ad_detail['ad_user_name'] = get_post_meta($r->ID, 'ad_user_name', true);
-			$ad_detail['ad_body_types'] = get_post_meta($r->ID, '_carspot_ad_body_types', true);
-			$ad_detail['ad_map_long']			=  get_post_meta($r->ID, '_carspot_ad_map_long_extra', true);
-			$ad_detail['ad_features']  = get_post_meta($r->ID, '_carspot_ad_features', true);
-			$ad_detail['ad_map_lat'] = get_post_meta($r->ID, '_carspot_ad_map_lat_extra', true);
-			$ad_detail['ad_mileage'] = get_post_meta($r->ID, '_carspot_ad_mileage', true);
-			$ad_detail['ad_user_address'] = get_post_meta($r->ID, '_carspot_ad_user_address', true);
+			$ad_detail[$count]['ad_assembles'] = wp_get_object_terms($r->ID,  'ad_assembles', array('fields' => 'names'));
+			$ad_detail[$count]['ad_price_type'] = get_post_meta($r->ID, '_carspot_ad_price_type', true);
+			$ad_detail[$count]['ad_warranty'] = get_post_meta($r->ID, 'ad_warranty', true);
+			$ad_detail[$count]['ad_user_name'] = get_post_meta($r->ID, 'ad_user_name', true);
+			$ad_detail[$count]['ad_body_types'] = get_post_meta($r->ID, '_carspot_ad_body_types', true);
+			$ad_detail[$count]['ad_map_long']			=  get_post_meta($r->ID, '_carspot_ad_map_long_extra', true);
+			$ad_detail[$count]['ad_features']  = get_post_meta($r->ID, '_carspot_ad_features', true);
+			$ad_detail[$count]['ad_map_lat'] = get_post_meta($r->ID, '_carspot_ad_map_lat_extra', true);
+			$ad_detail[$count]['ad_mileage'] = get_post_meta($r->ID, '_carspot_ad_mileage', true);
+			$ad_detail[$count]['ad_user_address'] = get_post_meta($r->ID, '_carspot_ad_user_address', true);
 			$count++;
 		}
 		wp_reset_postdata();
