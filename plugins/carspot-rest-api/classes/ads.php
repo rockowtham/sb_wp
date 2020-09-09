@@ -346,7 +346,7 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['location_lat']			=  get_post_meta($ad_id, '_carspot_ad_map_lat', true);
 		$ad_detail['location_long']			=  get_post_meta($ad_id, '_carspot_ad_map_long', true);
 		$ad_detail['ad_phone']			=  get_post_meta($ad_id, '_carspot_ad_phone_number', true);
-		$ad_detail['add_type'] 		    = get_post_meta($ad_id, 'ad_type', true);
+		$ad_detail['add_type'] 		    = get_post_meta($ad_id, '_carspot_ad_type1', true);
 		$ad_detail['engine_size'] = get_post_meta($ad_id, '_carspot_ad_engine_capacities', true);
 		$ad_detail['body_type'] = get_post_meta($ad_id, '_carspot_ad_body_types', true);
 		$ad_detail['ad_model']  =  get_post_meta($ad_id, '_carspot_ad_model', true);
