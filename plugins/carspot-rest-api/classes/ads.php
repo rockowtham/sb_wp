@@ -357,7 +357,7 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['ad_assembles'] = wp_get_object_terms($ad_id,  'ad_assembles', array('fields' => 'names'));
 		$ad_detail['ad_price_type'] = get_post_meta($ad_id, '_carspot_ad_price_type', true);
 		$ad_detail['ad_warranty'] = get_post_meta($ad_id, 'ad_warranty', true);
-		$ad_detail['ad_user_name'] = get_post_meta($ad_id, 'ad_user_name', true);
+		$ad_detail['ad_user_name'] = get_post_meta($ad_id, '_carspot_ad_user_name', true);
 		$ad_detail['ad_body_types'] = get_post_meta($ad_id, '_carspot_ad_body_types', true);
 		$ad_detail['ad_map_long']			=  get_post_meta($ad_id, '_carspot_ad_map_long_extra', true);
 		$ad_detail['ad_features']  = get_post_meta($ad_id, '_carspot_ad_features', true);
