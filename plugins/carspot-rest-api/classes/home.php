@@ -451,6 +451,8 @@ function latest_post() {
 				
 				$priceFinal = carspotAPI_get_price($price, $ad_id);
 				$ad_status  = carspotAPI_adStatus( $ad_id );
+				$tags_array1 		= wp_get_object_terms($ad_id,  'ad_tags', array('fields' => 'names'));
+				$ad_tags1	= @implode(',', $tags_array1);
 				// echo $postAuthor;
 				$adsArr[$cats_name][] = array
 					(
@@ -492,7 +494,8 @@ function latest_post() {
 		                'ad_mileage' => get_post_meta($ad_id, '_carspot_ad_mileage', true),
 						"ad_user_address" => get_post_meta($ad_id, '_carspot_ad_user_address', true),
 						"ad_categories" => get_post_meta($ad_id, "_carspot_ad_categories", true),
-						'ad_type' 	=> get_post_meta($ad_id, "_carspot_ad_type1", true)
+						'ad_type' 	=> get_post_meta($ad_id, "_carspot_ad_type1", true),
+						'ad_tags1' => $ad_tags1
 						// _carspot_ad_engine_capacities
 						//body_type
 						//year

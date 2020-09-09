@@ -364,6 +364,8 @@ if (!function_exists('carspotAPI_ad_posts_get')) {
 		$ad_detail['ad_map_lat'] = get_post_meta($ad_id, '_carspot_ad_map_lat_extra', true);
 		$ad_detail['ad_mileage'] = get_post_meta($ad_id, '_carspot_ad_mileage', true);
 		$ad_detail['ad_user_address'] = get_post_meta($ad_id, '_carspot_ad_user_address', true);
+		$tags_array1 		= wp_get_object_terms($ad_id,  'ad_tags', array('fields' => 'names'));
+		$ad_detail['ad_tags']	= @implode(',', $tags_array1);
 
 
 		$related_ads['is_show'] = $related_ads_is_show;
