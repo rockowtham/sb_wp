@@ -328,7 +328,8 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 				{
 					$data['is_show_latest'] = false;	
 				}
-				$adData = latest_post();
+				$cat_string = "17, 20, 21,22";
+				$adData = latest_post($cat_string,3);
 				$data['latest_ads'] = $adData;
 			}
 			
@@ -399,14 +400,16 @@ if (!function_exists('carspotAPI_home_adsLayouts'))
 	}
 }
 
-function latest_post() {
+function latest_post($cat_string,$limit1) {
 
 	// global 
-	$cat_string = "17, 20, 21,22";
+	
 	$categories = explode( ',', $cat_string );
 	foreach($categories as $category){
+		if($category === 21)
+			$limit1 = 6;
     $args = array(
-        'posts_per_page' => 3, /* how many post you need to display */
+        'posts_per_page' => $limit1, /* how many post you need to display */
         'offset' => 0,
         'orderby' => 'date',
         'order' => 'DESC',
@@ -495,7 +498,7 @@ function latest_post() {
 						"ad_user_address" => get_post_meta($ad_id, '_carspot_ad_user_address', true),
 						"ad_categories" => get_post_meta($ad_id, "_carspot_ad_categories", true),
 						'ad_type' 	=> get_post_meta($ad_id, "_carspot_ad_type1", true),
-						'ad_tags1' => $ad_tags1
+						'ad_tags' => $ad_tags1
 						// _carspot_ad_engine_capacities
 						//body_type
 						//year
