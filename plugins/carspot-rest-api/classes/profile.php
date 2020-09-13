@@ -197,6 +197,7 @@ if (!function_exists('carspotAPI_profile_post'))
 		$area 	= (isset($json_data['area'])) 	? trim($json_data['area']) : '';
 		$dob 	= (isset($json_data['dob'])) 	? trim($json_data['dob']) : '';
 		$gender 	= (isset($json_data['gender'])) 	? trim($json_data['gender']) : '';
+		$city 	= (isset($json_data['city'])) 	? trim($json_data['city']) : '';
 		
 		if( $name == "" )
 		{
@@ -224,7 +225,7 @@ if (!function_exists('carspotAPI_profile_post'))
 		if($area != ""){ set_cimyFieldValue($user_id, 'AREA', $area);}
 		if($dob != ""){ set_cimyFieldValue($user_id, 'DOB', $dob);}
 		if($gender != ""){ set_cimyFieldValue($user_id, 'GENDER', $gender);}
-		
+		if($city != ""){ set_cimyFieldValue($user_id, 'CITY', $city);}		
 		
 		$sb_userType = get_user_meta( $user_id, '_sb_user_type', true );			
 		
@@ -396,7 +397,7 @@ function carspotAPI_myProfile_get($request)
 	$profile_arr['area']			= array("key" => __("Area", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'AREA'),"placeholder" => __("Area", "carspot-rest-api"), "field_name" => "area");
 	$profile_arr['gender']			= array("key" => __("Gender", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'GENDER'),"placeholder" => __("Gender", "carspot-rest-api"), "field_name" => "gender");
 	$profile_arr['dob']			= array("key" => __("Dob", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'DOB'),"placeholder" => __("Date of Birth", "carspot-rest-api"), "field_name" => "dob");
-
+	$profile_arr['city']			= array("key" => __("City", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'CITY'),"placeholder" => __("City", "carspot-rest-api"), "field_name" => "city");
 /*Profile Work for New Feature Against Dealers Starts*/
 	$sb_user_type = get_user_meta( $user->ID, '_sb_user_type', true );
 	
