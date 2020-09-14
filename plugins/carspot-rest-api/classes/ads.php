@@ -1500,6 +1500,7 @@ if (!function_exists('carspotAPI_ad_posts_get_all')) {
 			$ad_detail[$count]['ad_map_lat'] = get_post_meta($r->ID, '_carspot_ad_map_lat_extra', true);
 			$ad_detail[$count]['ad_mileage'] = get_post_meta($r->ID, '_carspot_ad_mileage', true);
 			$ad_detail[$count]['ad_user_address'] = get_post_meta($r->ID, '_carspot_ad_user_address', true);
+			$ad_detail[$count]['ad_categories'] =  get_post_meta($r->ID, '_carspot_ad_categories', true);
 			$count++;
 		}
 		wp_reset_postdata();
