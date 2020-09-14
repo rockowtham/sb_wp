@@ -1489,7 +1489,7 @@ if (!function_exists('carspotAPI_ad_posts_get_all')) {
 			$ad_detail[$count]['ad_version']  = get_post_meta($r->ID, '_carspot_ad_version', true);
 			$ad_detail[$count]['ad_4thlevel']  = get_post_meta($r->ID, '_carspot_ad_4thlevel', true);
 			$ad_detail[$count]['ad_year'] = get_post_meta($r->ID, 'ad_years', true);
-			$ad_detail['add_years'] = get_post_meta($r->ID, '_carspot_ad_years', true);
+			$ad_detail[$count]['add_years'] = get_post_meta($r->ID, '_carspot_ad_years', true);
 			// 'add_years' =>  get_post_meta($ad_id, '_carspot_ad_years', true),
 			$ad_detail[$count]['ad_assembles'] = wp_get_object_terms($r->ID,  'ad_assembles', array('fields' => 'names'));
 			$ad_detail[$count]['ad_price_type'] = get_post_meta($r->ID, '_carspot_ad_price_type', true);
