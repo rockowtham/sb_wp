@@ -385,8 +385,8 @@ function carspotAPI_myProfile_get($request)
 	$json_data						= $request->get_json_params();
 	$paged              			= (isset( $json_data['page_number'] ) ) ?  $json_data['page_number'] : '1';
 	$user 							= wp_get_current_user();
-	// $value = get_cimyFieldValue($user->id, 'MAJOR');
-	// print_r($value);exit;
+	$value = get_cimyFieldValue($user->id, 'MAJOR');
+	print_r($value);exit;
 	$profile_arr['id']				= $user->ID;	
 	$profile_arr['user_email']		= array("key" => __("Email", "carspot-rest-api"), "value" => $user->user_email, "placeholder" => __("Enter Email", "carspot-rest-api"), "field_name" => "user_email");
 	$profile_arr['display_name']	= array("key" => __("Name", "carspot-rest-api"), "value" => $user->display_name,  "placeholder" => __("Enter Name", "carspot-rest-api"),"field_name" => "user_name");
