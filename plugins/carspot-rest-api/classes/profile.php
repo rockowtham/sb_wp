@@ -219,13 +219,13 @@ if (!function_exists('carspotAPI_profile_post'))
 		if( $saved_ph != $phone ) { update_user_meta( $user_id, '_sb_is_ph_verified', '0' ); }			
 		if( $accountType != "" ){ update_user_meta( $user_id, '_sb_user_type', $accountType ); }
 		if( $name != "" ){ $user_name = wp_update_user( array( 'ID' => $user_id, 'display_name' => $name ) ); }
-		if($major != ""){ set_cimyFieldValue($user_id, 'MAJOR', $major);}
-		if($address != ""){ set_cimyFieldValue($user_id, 'ADDRESS', $address);}
-		if($university != ""){ set_cimyFieldValue($user_id, 'UNIVERSITY', $university);}
-		if($area != ""){ set_cimyFieldValue($user_id, 'AREA', $area);}
-		if($dob != ""){ set_cimyFieldValue($user_id, 'DOB', $dob);}
-		if($gender != ""){ set_cimyFieldValue($user_id, 'GENDER', $gender);}
-		if($city != ""){ set_cimyFieldValue($user_id, 'CITY', $city);}		
+		if($major != ""){ update_user_meta($user_id, 'MAJOR', $major);}
+		if($address != ""){ update_user_meta($user_id, 'ADDRESS', $address);}
+		if($university != ""){ update_user_meta($user_id, 'UNIVERSITY', $university);}
+		if($area != ""){ update_user_meta($user_id, 'AREA', $area);}
+		if($dob != ""){ update_user_meta($user_id, 'DOB', $dob);}
+		if($gender != ""){ update_user_meta($user_id, 'GENDER', $gender);}
+		if($city != ""){ update_user_meta($user_id, 'CITY', $city);}		
 		
 		$sb_userType = get_user_meta( $user_id, '_sb_user_type', true );			
 		
@@ -385,19 +385,19 @@ function carspotAPI_myProfile_get($request)
 	$json_data						= $request->get_json_params();
 	$paged              			= (isset( $json_data['page_number'] ) ) ?  $json_data['page_number'] : '1';
 	$user 							= wp_get_current_user();
-	$value = get_cimyFieldValue($user->id, 'MAJOR');
-	print_r($value);exit;
+	// $value = get_cimyFieldValue($user->id, 'MAJOR');
+	// print_r($value);exit;
 	$profile_arr['id']				= $user->ID;	
 	$profile_arr['user_email']		= array("key" => __("Email", "carspot-rest-api"), "value" => $user->user_email, "placeholder" => __("Enter Email", "carspot-rest-api"), "field_name" => "user_email");
 	$profile_arr['display_name']	= array("key" => __("Name", "carspot-rest-api"), "value" => $user->display_name,  "placeholder" => __("Enter Name", "carspot-rest-api"),"field_name" => "user_name");
 	$profile_arr['phone']			= array("key" => __("Phone Number", "carspot-rest-api"), "value" => get_user_meta($user->ID, '_sb_contact', true ),"placeholder" => __("Enter phone number", "carspot-rest-api"), "field_name" => "phone_number");
-	$profile_arr['university']		= array("key" => __("University", "carspot-rest-api"), "value" => get_cimyFieldValue($user->id, 'UNIVERSITY'),"placeholder" => __("University/School*", "carspot-rest-api"), "field_name" => "university");
-	$profile_arr['major']			= array("key" => __("Major", "carspot-rest-api"), "value" => get_cimyFieldValue($user->id, 'MAJOR'),"placeholder" => __("Major", "carspot-rest-api"), "field_name" => "major");
-	$profile_arr['address']			= array("key" => __("Address", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'ADDRESS'),"placeholder" => __("Address", "carspot-rest-api"), "field_name" => "address");
-	$profile_arr['area']			= array("key" => __("Area", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'AREA'),"placeholder" => __("Area", "carspot-rest-api"), "field_name" => "area");
-	$profile_arr['gender']			= array("key" => __("Gender", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'GENDER'),"placeholder" => __("Gender", "carspot-rest-api"), "field_name" => "gender");
-	$profile_arr['dob']			= array("key" => __("Dob", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'DOB'),"placeholder" => __("Date of Birth", "carspot-rest-api"), "field_name" => "dob");
-	$profile_arr['city']			= array("key" => __("City", "carspot-rest-api"), "value" => get_cimyFieldValue($user->ID, 'CITY'),"placeholder" => __("City", "carspot-rest-api"), "field_name" => "city");
+	$profile_arr['university']		= array("key" => __("University", "carspot-rest-api"), "value" => get_user_meta($user->id, 'UNIVERSITY', true ),"placeholder" => __("University/School*", "carspot-rest-api"), "field_name" => "university");
+	$profile_arr['major']			= array("key" => __("Major", "carspot-rest-api"), "value" => get_user_meta($user->id, 'MAJOR', true ),"placeholder" => __("Major", "carspot-rest-api"), "field_name" => "major");
+	$profile_arr['address']			= array("key" => __("Address", "carspot-rest-api"), "value" => get_user_meta($user->ID, 'ADDRESS', true ),"placeholder" => __("Address", "carspot-rest-api"), "field_name" => "address");
+	$profile_arr['area']			= array("key" => __("Area", "carspot-rest-api"), "value" => get_user_meta($user->ID, 'AREA', true ),"placeholder" => __("Area", "carspot-rest-api"), "field_name" => "area");
+	$profile_arr['gender']			= array("key" => __("Gender", "carspot-rest-api"), "value" => get_user_meta($user->ID, 'GENDER', true ),"placeholder" => __("Gender", "carspot-rest-api"), "field_name" => "gender");
+	$profile_arr['dob']			= array("key" => __("Dob", "carspot-rest-api"), "value" => get_user_meta($user->ID, 'DOB', true ),"placeholder" => __("Date of Birth", "carspot-rest-api"), "field_name" => "dob");
+	$profile_arr['city']			= array("key" => __("City", "carspot-rest-api"), "value" => get_user_meta($user->ID, 'CITY', true ),"placeholder" => __("City", "carspot-rest-api"), "field_name" => "city");
 /*Profile Work for New Feature Against Dealers Starts*/
 	$sb_user_type = get_user_meta( $user->ID, '_sb_user_type', true );
 	
