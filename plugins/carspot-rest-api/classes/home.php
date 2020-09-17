@@ -407,7 +407,7 @@ function latest_post($cat_string,$limit1) {
 	$categories = explode( ',', $cat_string );
 	foreach($categories as $category){
 		if($category === 21)
-			$limit1 = 6;
+			$limit1 = 10;
     $args = array(
         'posts_per_page' => $limit1, /* how many post you need to display */
         'offset' => 0,
