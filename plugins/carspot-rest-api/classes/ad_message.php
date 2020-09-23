@@ -425,7 +425,7 @@ if (!function_exists('carspotAPI_messages_sent_func'))
 	function carspotAPI_messages_sent_func( $type,  $receiver_id, $sender_id, $user_id, $comment_id, $ad_id, $message, $time)
 	{
 			global $carspotAPI;
-			if( isset( $carspotAPI['app_settings_message_firebase'] ) && $carspotAPI['app_settings_message_firebase'] == true )
+			if(  true )
 			{
 				
 				
