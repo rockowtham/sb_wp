@@ -332,8 +332,9 @@ class carspotAPI_firebase_notifications_class {
     /*function makes curl request to firebase servers*/
     private function sendPushNotification($fields) {
 		global $carspotAPI;
-		$firebase_id = (isset($carspotAPI['api_firebase_id']) && $carspotAPI['api_firebase_id'] != "" ) ? $carspotAPI['api_firebase_id'] : '';
-        /*Set POST variables*/
+		// $firebase_id = (isset($carspotAPI['api_firebase_id']) && $carspotAPI['api_firebase_id'] != "" ) ? $carspotAPI['api_firebase_id'] : '';
+		$firebase_id = "AAAA9VF5ujM:APA91bHPoAZFxHOA1DzNAJ95HV0ayJUJhiUL6rkOxhp5JCqzfv0t1rG1Km8vqlLHEtD6fl794uZf0Hi2j4SOPp4Bs5Rcoh0O0qkpNfnvl9whQ9SxEpz6Abq424uLdirhDzoId-r7V07e";
+		/*Set POST variables*/
         $url = 'https://fcm.googleapis.com/fcm/send';
         $headers = array( 'Authorization: key='.$firebase_id, 'Content-Type: application/json'  );
         $ch = curl_init();
