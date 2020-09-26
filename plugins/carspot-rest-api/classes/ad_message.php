@@ -296,7 +296,7 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 			$push 	  = new carspotAPI_Push();
 			$payload = array();
 			$title = "New Message";
-			$message = "You Have got a new Message From ".$page_title;
+			$message = "You Have got a new Message From ";
 			$setMsgTopic = "New Message";
 			$push->setTitle($title);
 			$push->setMessage($message);
