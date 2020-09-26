@@ -296,12 +296,12 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 			$push 	  = new carspotAPI_Push();
 			$payload = array();
 			$title = "New Message";
-			$message = "You Have got a new Message From ";
+			$message = "You Have got a new Message From ".$page_title;
 			$setMsgTopic = "New Message";
 			$push->setTitle($title);
 			$push->setMessage($message);
 			$push->setMsgTopic($setMsgTopic);
-			$push->setImagefull($sender_img );
+			$push->setImagefull($data['ad_img'] );
 			$json = $push->getPush();
 			$regId = isset($user_firebase_id) ? $user_firebase_id : '';
             $response = $firebase->send($regId, $json);
