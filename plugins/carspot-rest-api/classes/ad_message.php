@@ -268,10 +268,12 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 		if($type == 'sent'){
 			$notify_user_id = $receiver_id;
 			$user_firebase_id  = get_user_meta($notify_user_id, '_sb_user_firebase_id', true );
+			$author_obj1 = @get_user_by('id', $get_other_user_name);
+			$page_title1 = ($author_obj1) ? $author_obj1->display_name : __("Chat Box", "carspot-rest-api");	
 		    $firebase = new carspotAPI_firebase_notifications_class();
 			$push 	  = new carspotAPI_Push();
 			$payload = array();
-			$title = "New Message from ". @get_user_by('id', $notify_user_id);
+			$title = "New Message from ". $page_title1;
 			$message = "You Have got a new Message for ".get_the_title($ad_id);
 			$setMsgTopic = "New Message";
 			$push->setTitle($title);
