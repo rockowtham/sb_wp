@@ -301,7 +301,7 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 			$push->setTitle($title);
 			$push->setMessage($message);
 			$push->setMsgTopic($setMsgTopic);
-			$push->setImagefull($sender_img );
+			$push->setImagefull($data['ad_img']);
 			$json = $push->getPush();
 			$regId = isset($user_firebase_id) ? $user_firebase_id : '';
             $response = $firebase->send($regId, $json);
