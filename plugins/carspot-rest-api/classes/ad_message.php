@@ -265,23 +265,7 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 				$message2 = carspotAPI_add_messages_get( $ad_id, $queryID,  $sender_id, $receiver_id,$type, $message );
 			}
 		}
-		if($type == 'sent'){
-			$notify_user_id = $receiver_id;
-			$user_firebase_id  = get_user_meta($notify_user_id, '_sb_user_firebase_id', true );
-		    $firebase = new carspotAPI_firebase_notifications_class();
-			$push 	  = new carspotAPI_Push();
-			$payload = array();
-			$title = "New Message";
-			$message = "You Have got a new Message";
-			$setMsgTopic = "New Message";
-			$push->setTitle($title);
-			$push->setMessage($message);
-			$push->setMsgTopic($setMsgTopic);
-			$push->setImagefull(carspotAPI_user_dp($notify_user_id));
-			$json = $push->getPush();
-			$regId = isset($user_firebase_id) ? $user_firebase_id : '';
-            $response = $firebase->send($regId, $json);
-		}
+		
 		$cArgs = array( 'author__in' => $authors, 'post_id' => $ad_id, 'parent' => $queryID, 'orderby' => 'comment_date', 'order' => 'DESC', );
 		$commentsData	=	get_comments( $cArgs );	
 		$total_posts    = count( $commentsData ); 
@@ -304,6 +288,25 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 		/*Add Read Status Here Starts*/	
 		update_comment_meta( get_current_user_id(), $ad_id."_".$get_other_user_name, 1 );
 		/*Add Read Status Here Ends*/	
+
+		if($type == 'sent'){
+			$notify_user_id = $receiver_id;
+			$user_firebase_id  = get_user_meta($notify_user_id, '_sb_user_firebase_id', true );
+		    $firebase = new carspotAPI_firebase_notifications_class();
+			$push 	  = new carspotAPI_Push();
+			$payload = array();
+			$title = "New Message";
+			$message = "You Have got a new Message From ".$page_title;
+			$setMsgTopic = "New Message";
+			$push->setTitle($title);
+			$push->setMessage($message);
+			$push->setMsgTopic($setMsgTopic);
+			$push->setImagefull($sender_img );
+			$json = $push->getPush();
+			$regId = isset($user_firebase_id) ? $user_firebase_id : '';
+            $response = $firebase->send($regId, $json);
+		}
+
 		if( count( $comments ) > 0 )
 		{
 			$success = true;
