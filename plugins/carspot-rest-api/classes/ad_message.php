@@ -271,13 +271,13 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 		    $firebase = new carspotAPI_firebase_notifications_class();
 			$push 	  = new carspotAPI_Push();
 			$payload = array();
-			$title = "New Message";
-			$message = "You Have got a new Message";
+			$title = "New Message from ". @get_user_by('id', $notify_user_id);
+			$message = "You Have got a new Message for ".get_the_title($ad_id);
 			$setMsgTopic = "New Message";
 			$push->setTitle($title);
 			$push->setMessage($message);
 			$push->setMsgTopic($setMsgTopic);
-			$push->setImagefull(carspotAPI_user_dp($notify_user_id));
+			$push->setImagefull(carspotAPI_get_ad_image($ad_id, 1, 'thumb'));
 			$json = $push->getPush();
 			$regId = isset($user_firebase_id) ? $user_firebase_id : '';
             $response = $firebase->send($regId, $json);
