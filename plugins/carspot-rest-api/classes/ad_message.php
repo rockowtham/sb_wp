@@ -295,8 +295,8 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 		    $firebase = new carspotAPI_firebase_notifications_class();
 			$push 	  = new carspotAPI_Push();
 			$payload = array();
-			$title = "New Message";
-			$message = "You Have got a new Message From ".$page_title;
+			$title = "You Have got a new Message From ".$page_title;
+			$message = "For Your Add ".$data['ad_title'];
 			$setMsgTopic = "New Message";
 			$push->setTitle($title);
 			$push->setMessage($message);
