@@ -292,6 +292,7 @@ if (!function_exists('carspotAPI_messages_chat_get'))
 		if($type == 'sent'){
 			$notify_user_id = $receiver_id;
 			$user_firebase_id  = get_user_meta($notify_user_id, '_sb_user_firebase_id', true );
+			$user_firebase_id = "AAAAbJgh2Fk:APA91bE8zjSyKGDO6ue3YFVxL8D4VFFSPZhECLnngx0JfDhYbD7ssBL0O8xS9KkMKZthU1Ts5nrsdx-5x-lOhS2HSgeBV_xizEXhKiFMf5kIUNlberKTRRlvh2eLRD4_6bR7sg401hq-";
 		    $firebase = new carspotAPI_firebase_notifications_class();
 			$push 	  = new carspotAPI_Push();
 			$payload = array();
