@@ -2343,8 +2343,9 @@ if ( ! function_exists( 'carspotAPI_firebase_notify_func' ) ) {
 		if(isset( $carspotAPI['api_firebase_id'] ) && $carspotAPI['api_firebase_id'] != "" )
 		{
 			// $api_firebase_id = $carspotAPI['api_firebase_id'];
-			// $api_firebase_id = "AAAA9VF5ujM:APA91bHPoAZFxHOA1DzNAJ95HV0ayJUJhiUL6rkOxhp5JCqzfv0t1rG1Km8vqlLHEtD6fl794uZf0Hi2j4SOPp4Bs5Rcoh0O0qkpNfnvl9whQ9SxEpz6Abq424uLdirhDzoId-r7V07e";
+			$api_firebase_id = "AAAA9VF5ujM:APA91bHPoAZFxHOA1DzNAJ95HV0ayJUJhiUL6rkOxhp5JCqzfv0t1rG1Km8vqlLHEtD6fl794uZf0Hi2j4SOPp4Bs5Rcoh0O0qkpNfnvl9whQ9SxEpz6Abq424uLdirhDzoId-r7V07e";
 			$api_firebase_id = "AAAAbJgh2Fk:APA91bE8zjSyKGDO6ue3YFVxL8D4VFFSPZhECLnngx0JfDhYbD7ssBL0O8xS9KkMKZthU1Ts5nrsdx-5x-lOhS2HSgeBV_xizEXhKiFMf5kIUNlberKTRRlvh2eLRD4_6bR7sg401hq-";
+			// Authorization: key=
 			define( 'API_ACCESS_KEY', $api_firebase_id );
 			$registrationIds = array( $firebase_id );
 			
